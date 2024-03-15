@@ -1,0 +1,77 @@
+<section class="heroCarousel {{#if theme_settings.carousel_layout '===' 'full-width'}}full-width{{else if theme_settings.carousel_layout '===' 'boxed-width'}}boxed-width{{/if}} {{#if theme_settings.content-alignment '===' 'center'}}heroCarousel-content--center{{else if theme_settings.content-alignment '===' 'left'}}heroCarousel-content--left{{/if}} {{#if theme_settings.transparent-content-background}}heroCarousel-content--transparent{{/if}} {{#if theme_settings.transparent_header}}heroCarousel--transparent-header{{/if}} heroCarousel--{{theme_settings.logo_alignment_option}}{{#unless theme_settings.disable_animation}} animate__animated animate__fadeIn{{/unless}}"
+    data-slick='{
+        "arrows": {{arrows}},
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "autoplay": true,
+        "autoplaySpeed": {{carousel.swap_frequency}},
+        "slide": "[data-hero-slide]",
+        "fade": true,
+        "speed": 500,
+        "draggable": true,
+        "responsive": [
+            {
+                "breakpoint": 319
+            },
+            {
+                "breakpoint": 551
+            },
+            {
+                "breakpoint": 801
+            },
+            {
+                "breakpoint": 1261
+            }
+        ]
+    }'
+>
+    {{#each carousel.slides}}
+    {{#if button_text}}
+    <div data-hero-slide="{{@index}}">
+    {{else}}
+    <a href="{{url}}" data-hero-slide="{{@index}}" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'carousel.slide_number' slide_number=(add @index 1)}}{{/if}}">
+    {{/if}}
+        <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch {{else}}content-fit{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
+            {{#if button_text}}
+            <a href="{{url}}" class="heroCarousel-image-wrapper">
+            {{else}}
+            <div class="heroCarousel-image-wrapper">
+            {{/if}}
+            {{#if @first}}
+                {{> components/common/responsive-img
+                    image=stencil_image
+                    class="heroCarousel-image"
+                    fallback_size='1280w'
+                    lazyload='disabled'
+                }}
+            {{else}}
+                {{> components/common/responsive-img
+                    image=stencil_image
+                    class="heroCarousel-image"
+                    fallback_size='1280w'
+                    lazyload='lazyload'
+                }}
+            {{/if}}
+            {{#if button_text}}
+            </a>
+            {{else}}
+            </div>
+            {{/if}}
+            {{#or heading text button_text}}
+                {{> components/carousel-content}}
+            {{/or}}
+        </div>
+    {{#if button_text}}
+    </div>
+    {{else}}
+    </a>
+    {{/if}}
+    {{/each}}
+    {{#if carousel.slides.length '>' 1}}
+        {{> components/carousel-content-announcement}}
+        {{#if play_pause_button}}
+            {{> components/carousel-play-pause-button}}
+        {{/if}}
+    {{/if}}
+</section>

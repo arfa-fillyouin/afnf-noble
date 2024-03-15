@@ -1,0 +1,27 @@
+{{#unless theme_settings.hide_hp_parallax_banner}}
+    <div class="hp-parallax-banner {{#if theme_settings.hp_parallax_transparent_content_bg}}transparent-content-bg{{else}}opaque-content-bg{{/if}}{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+        <div class="parallax-block">
+            <div class="banner-wrapper parallax-wrapper">
+                <div class="banner-content parallax-content">
+                    {{#if theme_settings.hp_parallax_subtitle}}
+                        <span class="hp-section-subtitle">{{theme_settings.hp_parallax_subtitle}}</span>
+                    {{/if}}
+                    {{#if theme_settings.hp_parallax_title}}
+                        <h2 class="hp-section-title">{{theme_settings.hp_parallax_title}}</h2>
+                    {{/if}}
+                    {{#if theme_settings.hp_parallax_desc}}
+                        <p class="hp-section-main-desc">{{theme_settings.hp_parallax_desc}}</p>
+                    {{/if}}
+                    {{#if theme_settings.hp_parallax_btn}}
+                    <div class="banner-button">
+                        <a class="button {{#or (if theme_settings.hp_parallax_transparent_content_bg) (if theme_settings.variant_name '===' 'light')}}button--primary{{/or}}" href="{{theme_settings.hp_parallax_btn_path}}">{{theme_settings.hp_parallax_btn}}</a>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="banner-img parallax" data-parallax-image="{{#if theme_settings.hp_parallax_img}}/product_images/uploaded_images/{{theme_settings.hp_parallax_img}}{{else}}{{cdn 'assets/img/missing-img.png'}}{{/if}}">{{#if theme_settings.hp_parallax_show_link}}<a href="{{theme_settings.hp_parallax_link}}"  aria-label="Homepage parallax banner link"></a>{{/if}}</div>
+            
+        </div>
+    </div>
+{{/unless}}

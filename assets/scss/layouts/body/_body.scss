@@ -1,0 +1,110 @@
+// =============================================================================
+// BODY (CSS)
+//
+// 1. Header is fixed on small screens, use the content body to create the whitespace
+//    between it and the header on all situations. If you change the spacing here,
+//    please update .heroCarousel too.
+//
+// =============================================================================
+
+
+.body {
+    margin-bottom: 84px;
+    // margin-top: spacing("double") * 2; // 1
+    // margin-top: spacing("single") + spacing("base");
+    margin-top: 35px;
+    min-height: 30vh;
+
+    .default--template & {
+        margin-top: 0;
+
+        @include breakpoint("medium") {
+            // margin-top: spacing("single") + spacing("base"); // 1
+            margin-top: 35px;
+            margin-bottom: 42px;
+        }
+
+        @include breakpoint("large") {
+            margin-bottom: 84px;
+        }
+    }
+
+    @include breakpoint("medium") {
+        // margin-top: spacing("single") + spacing("base"); // 1
+        margin-top: 35px;
+    }
+}
+
+
+.page {
+    @include grid-row(
+        $behavior: nest
+    );
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.page-content,
+.page-content--full {
+    @include grid-column(12);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.page-content--centered {
+
+    @include breakpoint("medium") {
+        @include grid-column(
+            $columns: 12,
+            $center: true
+        );
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.page-content--textCenter {
+    text-align: center;
+}
+
+.page-sidebar {
+    @include grid-column(12);
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+
+    @include breakpoint("medium") {
+        @include grid-column(3);
+        padding-right: 14px;
+        padding-left: 10.5px;
+        width: 28%;
+
+        + .page-content {
+            @include grid-column(9);
+            width: 72%;
+            padding-left: 10.5px;
+            padding-right: 10.5px;
+        }
+    }
+
+    @include breakpoint("large") {
+        @include grid-column(3);
+        padding-left: 10.5px;
+        padding-right: 21px;
+        width: 19.5%;
+
+        + .page-content {
+            @include grid-column(9);
+            width: 80.5%;
+            padding-left: 10.5px;
+            padding-right: 10.5px;
+        }
+    }
+
+    &.u-hiddenVisually {
+        + .page-content {
+            @include grid-column(12);
+        }
+    }
+}

@@ -1,0 +1,37 @@
+// =============================================================================
+// SIDEBAR BLOCKS (CSS)
+// =============================================================================
+
+
+// Block
+// -----------------------------------------------------------------------------
+
+.sidebarBlock {
+    + .sidebarBlock {
+        margin-top: spacing("single");
+        padding-top: spacing("single");
+
+
+        @include breakpoint("large") {
+            margin-top: spacing("single") + spacing("quarter");
+            padding-top: spacing("single") + spacing("quarter");
+        }
+    }
+}
+
+.sidebarBlock-heading {
+    font-size: 18px;
+    margin-top: 0;
+    text-transform: inherit;
+    font-family: $header-font-family, sans-serif;
+    font-weight: $header-font-weight;
+    padding-bottom: spacing("half");
+    border-bottom: 1px solid #EBEBEB;
+    position: relative;
+    margin-bottom: 15px;
+
+
+    @include breakpoint("large") {
+        font-size: 20px;
+    }
+}

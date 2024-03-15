@@ -1,0 +1,39 @@
+{{#if settings.show_newsletter_box}}
+      {{#if theme_settings.popup_visibility '===' 'popup-active-on-refresh'}}
+	      <div id="newsletter-popup" class="popup-active-on-refresh">
+	        <div style="bottom: 20px; right: 0%; display: none;" id="dialog" class="window">
+	          <div id="newsletter-wrapper">
+	            <a href="#" class="close agree" aria-label="Newsletter popup close button">
+	            	<svg><use xlink:href="#icon-modal-close"></use></svg>
+	            </a>
+	              <div class="newsletter-popup-content">
+	                  <div class="content">
+	                      <div class="" data-section-type="newsletterSubscription">
+	                          {{> components/custom/subscription-popup-form}}
+	                      </div>
+	                  </div>
+	              </div>
+	          </div>
+	          </div> 
+	      </div>
+      {{/if}}
+
+      {{#if theme_settings.popup_visibility '===' 'popup-active'}}
+	      <div id="newsletter-popup" class="popup-active-with-cookie">
+	        <div style="bottom: 20px; right: 0%; display: none;" id="dialog" class="window">
+	          <div id="newsletter-wrapper">
+	            <a href="#" class="close agree" aria-label="Newsletter popup close button">
+	            	<svg><use xlink:href="#icon-modal-close"></use></svg>
+	            </a>
+	              <div class="newsletter-popup-content">
+	                  <div class="content">
+	                      <div class="" data-section-type="newsletterSubscription">
+	                          {{> components/custom/subscription-popup-form}}
+	                      </div>
+	                  </div>
+	              </div>
+	          </div>
+	          </div>
+	      </div>
+      {{/if}}
+{{/if}}

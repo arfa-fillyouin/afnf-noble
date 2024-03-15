@@ -1,0 +1,102 @@
+<a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
+
+<!-- Main Header Start -->
+<header class="header {{#if theme_settings.light_bg-header}}light-bg-header{{/if}} {{#if theme_settings.sticky_header}}sticky-header{{/if}} {{#if theme_settings.transparent_header}}transparent-header{{/if}} header-{{theme_settings.logo_alignment_option}} {{#if theme_settings.hide_banner}}hide-top-banner{{/if}}" role="banner">
+    <!-- Global Top Banner Start -->
+    {{#unless theme_settings.hide_banner}}
+        <div class="global-banner top">
+            <p class="global-banner-text{{#unless theme_settings.disable_animation}} animate__animated animate__fadeIn{{/unless}}">{{limit theme_settings.banner-content 100}}</p>
+        </div>
+    {{/unless}}
+    <!-- Global Top Banner End -->
+
+    <!-- Marketing Top Banner Start -->
+    {{#if banners.top}}
+        <div class="banners" data-banner-location="top">
+            {{#each (limit banners.top_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+    <!-- Marketing Top Banner End -->
+
+    <div class="header-wrapper{{#unless theme_settings.disable_animation}} animate__animated animate__fadeIn{{/unless}}">
+        <div class="header-wrapper-inner">
+            <div class="mobileMenu-toggle-open">
+                <span class="mobileMenu-toggle-open-inner">
+                    <svg><use xlink:href="#icon-menu" /></svg>
+                </span>
+            </div>
+            <div class="{{#or (if theme_settings.logo_alignment_option '==' 'center') (if theme_settings.logo_alignment_option '===' 'stacked-social') (if theme_settings.logo_alignment_option '===' 'center-stacked') }}header-left{{/or}}{{#if theme_settings.logo_alignment_option '==' 'left'}}header-middle{{/if}}">
+                {{#or (if theme_settings.logo_alignment_option '==' 'center') (if theme_settings.logo_alignment_option '==' 'left')}}
+                    <div class="navPages-container" id="menu" data-menu>
+                        {{> components/common/navigation-menu}}
+                    </div>
+                {{/or}}
+                {{#if theme_settings.logo_alignment_option '===' 'stacked-social'}}
+                    {{> components/common/social-links}}
+                {{/if}}
+                {{#if theme_settings.logo_alignment_option '===' 'center-stacked'}}
+                    <nav class="navUser">
+                        <ul class="navUser-section navUser-section--alt">
+                            <li class="navUser-item navUser--search">
+                                <button class="navUser-action navUser-action--quickSearch"
+                                   type="button"
+                                   id="quick-search-expand-1"
+                                   data-search="quickSearch"
+                                   aria-controls="quickSearch"
+                                   aria-label="{{lang 'common.search'}}"
+                                >
+                                    <span class="navUser-custom-icon">
+                                        <svg><use xlink:href="#icon-search"></use></svg>
+                                    </span>
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                {{/if}}
+            </div>
+            
+            <div class="{{#or (if theme_settings.logo_alignment_option '==' 'center') (if theme_settings.logo_alignment_option '===' 'stacked-social') (if theme_settings.logo_alignment_option '===' 'center-stacked') }}header-middle{{/or}}{{#if theme_settings.logo_alignment_option '==' 'left'}}header-left{{/if}}">
+                {{#if page_type '===' 'default'}}
+                    <h1 class="header-logo">
+                        {{> components/common/store-logo}}
+                    </h1>
+                {{else}}
+                    <div class="header-logo">
+                        {{> components/common/store-logo}}
+                    </div>
+                {{/if}}
+            </div>
+            
+            <div class="header-right">
+                {{> components/common/navigation}}
+                {{#if theme_settings.logo_alignment_option '===' 'left'}}
+                    <div class="mobileMenu-toggle-open">
+                        <span class="mobileMenu-toggle-open-inner">
+                            <svg><use xlink:href="#icon-menu" /></svg>
+                        </span>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+        {{#or (if theme_settings.logo_alignment_option '==' 'center-stacked') (if theme_settings.logo_alignment_option '==' 'stacked-social')}}
+            <div class="header-stacked">
+                <div class="navPages-container" id="menu" data-menu>
+                    {{> components/common/navigation-menu}}
+                </div>
+            </div>
+        {{/or}}
+    </div>
+</header>
+{{!-- <div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close>
+    {{!> components/common/quick-search name='nav-quick-search'}}
+</div> --}}
+<!-- Main Header End -->
+
+{{{region name="header_bottom--global"}}}
+{{{region name="header_bottom"}}}

@@ -1,0 +1,21 @@
+{{#if product.related_products}}
+    <section class="related-products-section">
+        <h2 class="related-products-title products-title">{{lang 'products.related_products'}}</h2>
+        <div class="related-products" id="related-products">
+            {{#if settings.data_tag_enabled}}
+                {{> components/products/carousel products=product.related_products columns=4 list="Related Products"}}
+            {{else}}
+                {{> components/products/carousel products=product.related_products columns=4}}
+            {{/if}}
+        </div>
+    </section>
+{{/if}}
+
+{{#if product.similar_by_views}}
+    <section class="similiar-products-section">
+        <h2 class="similiar-products-title products-title">{{lang 'products.similar_by_views'}}</h2>
+        <div class="similiar-products" id="similiar-products">
+            {{> components/products/carousel products=product.similar_by_views columns=4 list="Customers Also Viewed"}}
+        </div>
+    </section>
+{{/if}}

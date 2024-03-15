@@ -1,0 +1,97 @@
+{{#unless theme_settings.hide_hp_horizontal_banner_1}}
+    <div class="hp-horizontal-banner right-side-banner">
+        <div class="container">
+            <div class="banner-wrapper{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                {{#if theme_settings.hp_horizontal_1_img}}
+                    <div class="banner-img">
+                        {{#if theme_settings.hp_horizontal_1_show_link}}
+                            <a href="{{theme_settings.hp_horizontal_1_link}}">
+                        {{/if}}
+                               <img src="/product_images/uploaded_images/{{theme_settings.hp_horizontal_1_img}}">
+                        {{#if theme_settings.hp_horizontal_1_show_link}}
+                            </a>
+                        {{/if}}
+                    </div>
+                {{else}}
+                    <div class="banner-img">
+                        {{#if theme_settings.hp_horizontal_1_show_link}}
+                            <a href="{{theme_settings.hp_horizontal_1_link}}">
+                        {{/if}}
+                               <img src="{{cdn '/assets/img/missing-img.png'}}" alt="When there is no image uploaded">
+                        {{#if theme_settings.hp_horizontal_1_show_link}}
+                            </a>
+                        {{/if}}
+                    </div>
+                {{/if}}
+                <div class="banner-content">
+                    {{#if theme_settings.hp_horizontal_1_subtitle}}
+                        <span class="hp-section-subtitle">{{theme_settings.hp_horizontal_1_subtitle}}</span>
+                    {{/if}}
+                    {{#if theme_settings.hp_horizontal_1_title}}
+                        <h2 class="hp-section-title">{{theme_settings.hp_horizontal_1_title}}</h2>
+                    {{/if}}
+                    {{#if theme_settings.hp_horizontal_1_desc}}
+                        <p class="hp-section-main-desc">{{theme_settings.hp_horizontal_1_desc}}</p>
+                    {{/if}}
+                    <div class="banner-button">
+                        {{#if theme_settings.hp_horizontal_1_btn1}}
+                            <a class="button button--primary" href="{{theme_settings.hp_horizontal_1_btn1_path}}">{{theme_settings.hp_horizontal_1_btn1}}</a>
+                        {{/if}}
+                        {{#if theme_settings.hp_horizontal_1_btn2}}
+                            <a class="button" href="{{theme_settings.hp_horizontal_1_btn2_path}}">{{theme_settings.hp_horizontal_1_btn2}}</a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/unless}}
+
+{{#unless theme_settings.hide_hp_horizontal_banner_2}}
+    <div class="hp-horizontal-banner left-side-banner">
+        <div class="container">
+            <div class="banner-wrapper{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                {{#if theme_settings.hp_horizontal_2_img}}
+                    <div class="banner-img">
+                        {{#if theme_settings.hp_horizontal_2_show_link}}
+                            <a href="{{theme_settings.hp_horizontal_2_link}}">
+                        {{/if}}
+                               <img src="/product_images/uploaded_images/{{theme_settings.hp_horizontal_2_img}}">
+                        {{#if theme_settings.hp_horizontal_2_img}}
+                            </a>
+                        {{/if}}
+                    </div>
+                {{else}}
+                    <div class="banner-img">
+                        {{#if theme_settings.hp_horizontal_2_show_link}}
+                            <a href="{{theme_settings.hp_horizontal_2_link}}">
+                        {{/if}}
+                               <img src="{{cdn '/assets/img/missing-img.png'}}" alt="When there is no image uploaded">
+                        {{#if theme_settings.hp_horizontal_2_show_link}}
+                            </a>
+                        {{/if}}
+                    </div>
+                {{/if}}
+                <div class="banner-content">
+                    {{#if theme_settings.hp_horizontal_2_subtitle}}
+                        <span class="hp-section-subtitle">{{theme_settings.hp_horizontal_2_subtitle}}</span>
+                    {{/if}}
+                    {{#if theme_settings.hp_horizontal_2_title}}
+                        <h2 class="hp-section-title">{{theme_settings.hp_horizontal_2_title}}</h2>
+                    {{/if}}
+                    {{#if theme_settings.hp_horizontal_2_desc}}
+                        <p class="hp-section-main-desc">{{theme_settings.hp_horizontal_2_desc}}</p>
+                    {{/if}}
+                    <div class="banner-button">
+                        {{#if theme_settings.hp_horizontal_2_btn1}}
+                            <a class="button button--primary" href="{{theme_settings.hp_horizontal_2_btn1_path}}">{{theme_settings.hp_horizontal_2_btn1}}</a>
+                        {{/if}}
+                        {{#if theme_settings.hp_horizontal_2_btn2}}
+                            <a class="button" href="{{theme_settings.hp_horizontal_2_btn2_path}}">{{theme_settings.hp_horizontal_2_btn2}}</a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/unless}}

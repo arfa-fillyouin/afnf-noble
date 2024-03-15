@@ -1,0 +1,20 @@
+// =============================================================================
+// FACET LABEL (CSS)
+// =============================================================================
+
+.facetLabel {
+    background: $facetLabel-backgroundColor;
+    border-radius: $facetLabel-borderRadius;
+    padding: spacing("eighth") spacing("third") spacing("eighth") spacing("third");
+    text-decoration: none;
+    border: 1px solid stencilColor("color-textSecondary");
+    font-size: 13px;
+
+    .icon {
+        @include square(12px);
+        display: inline-block;
+        fill: $facetLabel-removeIcon-color;
+        position: relative; // Vertical align the icon
+        top: -1px; // Vertical align the icon
+    }
+}

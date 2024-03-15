@@ -1,0 +1,17 @@
+{{#unless theme_settings.hide_hp_text_banner}}
+    <div class="hp-text-section{{#unless theme_settings.disable_animation}} animate__animated animate__fadeIn{{/unless}}">
+        <div class="container">
+            <div class="section-wrapper">
+                {{#if theme_settings.text-section-title}}
+                    <h2 class="hp-section-title">{{theme_settings.text-section-title}}</h2>
+                {{/if}}
+                {{#if theme_settings.text-section-main-desc}}
+                    <p class="hp-section-main-desc">{{theme_settings.text-section-main-desc}}</p>
+                {{/if}}
+                {{#if theme_settings.text-section-sub-desc}}
+                    <p class="hp-section-sub-desc">{{theme_settings.text-section-sub-desc}}</p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{/unless}}

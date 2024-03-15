@@ -1,0 +1,50 @@
+{{#unless theme_settings.hide_hp_sidebyside_banner}}
+    <div class="hp-sidebyside-banner">
+        <div class="banner-wrapper {{#if theme_settings.hp_sidebyside_banners_layout '===' 'full-width'}}full-width{{else if theme_settings.hp_sidebyside_banners_layout '===' 'boxed-width'}}boxed-width{{/if}}">
+            <div class="banner-inner{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                {{#if theme_settings.hp_sidebyside_first_img}}
+                    <a class="banner-img" href="{{theme_settings.hp_sidebyside_first_link_path}}">
+                        <img src="/product_images/uploaded_images/{{theme_settings.hp_sidebyside_first_img}}">
+                    </a>
+                {{else}}
+                    <a class="banner-img" href="{{theme_settings.hp_sidebyside_first_link_path}}">
+                        <img src="{{cdn '/assets/img/missing-img.png'}}" alt="When there is no image uploaded">
+                    </a>
+                {{/if}}
+                <div class="banner-content">
+                    {{#if theme_settings.hp_sidebyside_first_title}}
+                        <h2 class="hp-section-title">{{theme_settings.hp_sidebyside_first_title}}</h2>
+                    {{/if}}
+                    {{#if theme_settings.hp_sidebyside_first_desc}}
+                        <p class="hp-section-main-desc">{{theme_settings.hp_sidebyside_first_desc}}</p>
+                    {{/if}}
+                    {{#if theme_settings.hp_sidebyside_first_link_lable}}
+                        <a class="hp-section-link" href="{{theme_settings.hp_sidebyside_first_link_path}}">{{theme_settings.hp_sidebyside_first_link_lable}}</a>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="banner-inner{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                {{#if theme_settings.hp_sidebyside_sec_img}}
+                    <a class="banner-img" href="{{theme_settings.hp_sidebyside_sec_link_path}}">
+                        <img src="/product_images/uploaded_images/{{theme_settings.hp_sidebyside_sec_img}}">
+                    </a>
+                {{else}}
+                    <a class="banner-img" href="{{theme_settings.hp_sidebyside_sec_link_path}}">
+                        <img src="{{cdn '/assets/img/missing-img.png'}}" alt="When there is no image uploaded">
+                    </a>
+                {{/if}}
+                <div class="banner-content">
+                    {{#if theme_settings.hp_sidebyside_sec_title}}
+                        <h2 class="hp-section-title">{{theme_settings.hp_sidebyside_sec_title}}</h2>
+                    {{/if}}
+                    {{#if theme_settings.hp_sidebyside_sec_desc}}
+                        <p class="hp-section-main-desc">{{theme_settings.hp_sidebyside_sec_desc}}</p>
+                    {{/if}}
+                    {{#if theme_settings.hp_sidebyside_sec_link_lable}}
+                        <a class="hp-section-link" href="{{theme_settings.hp_sidebyside_sec_link_path}}">{{theme_settings.hp_sidebyside_sec_link_lable}}</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+{{/unless}}

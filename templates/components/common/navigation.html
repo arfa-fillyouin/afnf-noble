@@ -1,0 +1,186 @@
+<nav class="navUser">
+    {{#or customer (unless theme_settings.restrict_to_login)}}
+        {{> components/common/currency-selector}}
+    {{/or}}
+
+    <ul class="navUser-section navUser-section--alt">
+        {{#if customer.store_credit.value '>' 0}}
+            <li class="navUser-item">
+                <a class="navUser-action navUser-action--storeCredit"
+                   data-dropdown="storeCredit-dropdown"
+                   data-options="align:bottom"
+                   href="{{urls.cart}}"
+                   aria-label="{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}"
+                >
+                    <span class="navUser-action-divider">
+                        {{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}
+                    </span>
+                </a>
+                <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                </div>
+            </li>
+        {{/if}}
+        
+        <li class="navUser-item navUser--compare">
+            <a class="navUser-action navUser-item--compare"
+               href="{{urls.compare}}"
+               data-compare-nav
+               aria-label="{{lang 'common.compare'}}"
+            >
+                <span class="navUser-custom-icon">
+                    <svg><use xlink:href="#icon-compare"></use></svg>
+                </span>
+                <span class="countPill countPill--positive countPill--alt">0</span>
+            </a>
+        </li>
+        {{#if settings.gift_certificates_enabled}}
+            <li class="navUser-item navUser--gift">
+                <a class="navUser-action"
+                   href="{{urls.gift_certificate.purchase}}"
+                   aria-label="{{lang 'common.gift_cert'}}"
+                >
+                    <span class="navUser-custom-icon">
+                        <svg><use xlink:href="#icon-giftcard"></use></svg>
+                    </span>
+                </a>
+            </li>
+        {{/if}}
+        {{#if settings.show_wishlist}}
+            <li class="navUser-item navUser--wishlist">
+                <a class="navUser-action"
+                   href="{{urls.account.wishlists.all}}"
+                   aria-label="wishlist"
+                >
+                    <span class="navUser-custom-icon">
+                        <svg><use xlink:href="#icon-heart"></use></svg>
+                    </span>
+                </a>
+            </li>
+        {{/if}}
+        <li class="navUser-item navUser-item--account">
+            <a class="navUser-action"
+               href="{{urls.auth.login}}"
+               aria-label="{{lang 'common.login'}}"
+            >
+                <span class="navUser-custom-icon">
+                    <svg><use xlink:href="#icon-account"></use></svg>
+                </span>
+            </a>
+            {{#if customer}}
+            <div class="navUser-dropdown dropdown-menu">
+                <ul class="navUser-list">
+                    <li class="navUser-item">
+                        <a class="navUser-action"
+                           href="{{urls.account.orders.all}}"
+                           aria-label="{{lang 'account.nav.orders'}}"
+                        >
+                            {{lang 'account.nav.orders'}}
+                        </a>
+                    </li>
+                    {{#if settings.returns_enabled}}
+                        <li class="navUser-item">
+                            <a class="navUser-action"
+                               href="{{urls.account.returns}}"
+                               aria-label="{{lang 'account.nav.returns'}}"
+                            >
+                                {{lang 'account.nav.returns'}}
+                            </a>
+                        </li>
+                    {{/if}}
+                    <li class="navUser-item">
+                        <a class="navUser-action"
+                           href="{{urls.account.inbox}}"
+                           aria-label="{{lang 'account.mobile_nav.messages'}}"
+                        >
+                            {{lang 'account.mobile_nav.messages'}}
+                        </a>
+                    </li>
+                    <li class="navUser-item">
+                        <a class="navUser-action"
+                           href="{{urls.account.addresses}}"
+                           aria-label="{{lang 'account.nav.addresses'}}"
+                        >
+                            {{lang 'account.nav.addresses'}}
+                        </a>
+                    </li>
+                    {{#if settings.show_payment_methods}}
+                        <li class="navUser-item">
+                            <a class="navUser-action"
+                               href="{{urls.account.payment_methods.all}}"
+                               aria-label="{{lang 'account.nav.payment_methods'}}"
+                            >
+                                {{lang 'account.nav.payment_methods'}}
+                            </a>
+                        </li>
+                    {{/if}}
+                    <li class="navUser-item">
+                        <a class="navUser-action"
+                           href="{{urls.account.wishlists.all}}"
+                           aria-label="{{lang 'account.mobile_nav.wishlists'}}"
+                        >
+                            {{lang 'account.mobile_nav.wishlists'}}
+                        </a>
+                    </li>
+                    <li class="navUser-item">
+                        <a class="navUser-action"
+                           href="{{urls.account.recent_items}}"
+                           aria-label="{{lang 'account.nav.recently_viewed'}}"
+                        >
+                            {{lang 'account.nav.recently_viewed'}}
+                        </a>
+                    </li>
+                    <li class="navUser-item">
+                        <a class="navUser-action"
+                           href="{{urls.account.details}}"
+                           aria-label="{{lang 'account.nav.settings'}}"
+                        >
+                            {{lang 'account.nav.settings'}}
+                        </a>
+                    </li>
+                    <li class="navUser-item">
+                        <a class="navUser-action"
+                           href="{{urls.auth.logout}}"
+                           aria-label="{{lang 'common.logout'}}"
+                        >
+                            {{lang 'common.logout'}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {{/if}}
+        </li>
+        <li class="navUser-item navUser--search">
+            <button class="navUser-action navUser-action--quickSearch"
+               type="button"
+               id="quick-search-expand"
+               data-search="quickSearch"
+               aria-controls="quickSearch"
+               aria-label="{{lang 'common.search'}}"
+            >
+                <span class="navUser-custom-icon">
+                    <svg><use xlink:href="#icon-search"></use></svg>
+                </span>
+            </button>
+        </li>
+        <li class="navUser-item navUser-item--cart">
+            <a class="navUser-action"
+               data-cart-preview
+               data-dropdown="cart-preview-dropdown"
+               data-options="align:right"
+               href="{{urls.cart}}"
+               aria-label="{{lang 'cart.nav_aria_label'}}"
+            >
+                <span class="navUser-item-cartLabel navUser-custom-icon">
+                    <svg><use xlink:href="#icon-cart"></use></svg>
+                </span>
+                <span class="countPill cart-quantity"></span>
+            </a>
+
+            <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+        </li>
+    </ul>
+    <div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close>
+        {{> components/common/quick-search name='nav-quick-search'}}
+    </div>
+</nav>

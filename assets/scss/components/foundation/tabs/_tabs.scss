@@ -1,0 +1,153 @@
+// =============================================================================
+// TABS (CSS)
+// =============================================================================
+//
+// Most of these styles deliberately reset Citadel's defaults for smaller
+// screens since the styles in Stencil for smaller screens are more persistent
+// across breakpoints.
+//
+// -----------------------------------------------------------------------------
+
+.tab {
+    border-top: $tab-active-border;
+    float: none;
+    padding: 0;
+    text-align: center;
+    border: none;
+    display: block;
+    margin: 0 0 10px;
+
+    @include breakpoint("small") {
+        padding: 0 25px;
+    }
+
+    @include breakpoint("medium") {
+        display: inline-block;
+        border-top-color: $tab-title-border-color;
+        padding: 0 20px;
+        margin: 0;
+    }
+
+    @include breakpoint("large") {
+        padding: 0 36px;
+    }
+
+    &.is-active {
+        border-left-color: $tab-title-border-color;
+        border-right-color: $tab-title-border-color;
+        margin: 0 0 10px;
+        border: none;
+
+        @include breakpoint("medium") {
+            border: $tab-active-border;
+            border-bottom: $tab-title-border;
+            margin: 0;
+            border: none;
+        }
+
+        .tab-title {
+            &::after {
+                width: 100%;
+            }
+        }
+
+    }
+}
+
+.tab-title {
+    padding: spacing("half") + spacing("quarter") 0;
+    text-align: center;
+    text-decoration: $tab-title-text-decoration;
+    font-family: stencilFontFamily("section-main-font");
+    font-weight: stencilFontWeight("section-main-font");
+    font-size: stencilNumber("section-main-fontsize") - 12;
+    line-height: 1.2;
+    color: stencilColor("section-main-color");
+    text-transform: uppercase;
+    padding: 4px 0;
+    margin: 0;
+    border-bottom: none;
+    letter-spacing: 0.25px;
+    display: inline-block;
+    position: relative;
+
+    @include breakpoint("small") {
+        text-align: left;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0%;
+        background-color: stencilColor("section-main-color");
+        transition: all 0.3s ease;
+    }
+
+    @include breakpoint("medium"){
+        font-size: stencilNumber("section-main-fontsize") - 10;
+    }
+
+    @include breakpoint("large"){
+        font-size: stencilNumber("section-main-fontsize");
+    }
+}
+
+.tab-content {
+    //
+    // State for when tab-content has js generated of calculated content, like carousel
+    //
+    // Purpose: The content being display: none, means any js calculated dimensions
+    // are incorrect as the elements inside the tab-content have no dimensions to grab.
+    // Carousel is a prime example. It needs widths to calculate the layout and slides
+    // -----------------------------------------------------------------------------
+    &.has-jsContent {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: height 0.5s ease, visibility 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+
+        &.is-active {
+            height: auto;
+            overflow: visible;
+            padding: $tabs-content-padding;
+            visibility: visible;
+
+            padding-bottom: 0;
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+    margin-bottom: 0;
+
+    //
+    // Product review displays in tabs
+    //
+    // Purpose: Display product reviews within tabbed content on product pages.
+    // -----------------------------------------------------------------------------
+    .productReview {
+        width: grid-calc(12, $total-columns);
+
+        @include breakpoint("small") {
+            width: grid-calc(6, $total-columns);
+        }
+
+        @include breakpoint("medium") {
+            width: grid-calc(6, $total-columns);
+        }
+
+        @include breakpoint("large") {
+            width: grid-calc(6, $total-columns);
+        }
+    }
+
+    .productReviews {
+        border-top: 0;
+    }
+}

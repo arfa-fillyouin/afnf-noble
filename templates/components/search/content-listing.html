@@ -1,0 +1,16 @@
+{{#if content_results}}
+    <div class="actionBar-wrapper">
+        <div class="left-part">
+            {{> components/search/content-sort-box sort=pagination.content_results.sort}}
+            <ul>
+                {{#each content_results}}
+                    <strong><a href="{{url}}">{{{title}}}</a></strong>({{type}})
+                    <p>{{{content}}}</p>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="right-part">
+            {{> components/common/paginator pagination.content_results reload=true}}
+        </div>
+    </div>
+{{/if}}

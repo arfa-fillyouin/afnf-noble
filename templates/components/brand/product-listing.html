@@ -1,0 +1,75 @@
+{{inject 'noCompareMessage' (lang 'compare.no_compare')}}
+
+<div class="actionBar-wrapper">
+    <div class="left-part">
+        {{> components/products/filter sort=pagination.brand.sort}}
+        {{#if theme_settings.show_grid_list_toggle_icons}}
+            {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+              <div class="grid-list-view toggle">
+                <a class="grid active toggle-link" href="#" title="Toggle Grid View"><svg class=""><use xlink:href="#icon-grid"></use></svg></a>
+                <a class="list toggle-link" href="#" title="Toggle List View"><svg class=""><use xlink:href="#icon-list"></use></svg></a>
+              </div>
+            {{/if}}
+
+            {{#if theme_settings.product_list_display_mode '===' 'list'}}
+              <div class="grid-list-view">
+                <a class="list active toggle-link" href="#" title="Toggle List View"><svg class=""><use xlink:href="#icon-list"></use></svg></a>
+                <a class="grid toggle-link" href="#" title="Toggle Grid View"><svg class=""><use xlink:href="#icon-grid"></use></svg></a>
+              </div>
+            {{/if}}
+        {{/if}}
+    </div>
+    <div class="right-part">
+        {{> components/common/paginator pagination.brand}}
+    </div>
+</div>
+
+<div {{#if settings.data_tag_enabled}} data-list-name="Brand: {{brand.name}}" {{/if}}>
+
+    {{#if theme_settings.show_grid_list_toggle_icons}}
+        {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+            <div class="gridView default visible mobile-products-{{theme_settings.products_per_row_mobile}}">
+                {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+            </div>
+            <div class="listView">
+                {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+            </div>
+        {{else if theme_settings.product_list_display_mode '===' 'list'}}
+            <div class="listView default visible">
+                {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+            </div>
+            <div class="gridView mobile-products-{{theme_settings.products_per_row_mobile}}">
+                {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+            </div>
+        {{/if}}
+    {{else}}
+        {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+            {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+        {{else}}
+            {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+        {{/if}}
+    {{/if}}
+</div>
+
+<div class="pagination-compare-wrapper">
+    <div class="left-part">
+        <ul class="navUser-section navUser-section--alt">
+            <li class="navUser-item">
+                <a class="navUser-action navUser-item--compare button button--primary"
+                   href="{{urls.compare}}"
+                   data-compare-nav
+                   aria-label="{{lang 'common.compare'}}"
+                >
+                    <i class="icon">
+                        <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-compare"></use></svg> 
+                    </i>
+                    {{lang 'common.compare'}}
+                    <span class="countPill countPill--positive countPill--alt"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="right-part">
+        {{> components/common/paginator pagination.brand}}
+    </div>
+</div>

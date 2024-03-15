@@ -1,0 +1,30 @@
+<div class="navPage-subMenu altermenu" aria-hidden="true" tabindex="-1">
+    <ul class="navPage-list">
+        {{#each categories}} 
+            <li class="navPage-item">
+                {{#if children}}
+                    <a class="navPages-action has-SubPages" href="{{url}}">{{name}}<i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-arrow-right" /></svg></i></a>
+                    <span class="menu-icon">
+                        <svg class="add-icon"><use xlink:href="#icon-add" /></svg>
+                        <svg class="remove-icon"><use xlink:href="#icon-remove" /></svg>
+                    </span>
+                    <div class="navPage-childList">
+                        <ul class="navPage-list">
+                            {{#each (limit children 5)}}
+                                <li class="navPage-item">
+                                    <a class="navPage-SubPages-action navPages-action" href="{{url}}">{{name}}</a>
+                                </li> 
+                            {{/each}}
+                            <li class="navPage-item viewAllLink">
+                                <a class="navPage-SubPages-action navPages-action" href="{{url}}">{{lang 'common.view_all'}}</a>
+                            </li> 
+                        </ul>
+                    </div>
+                {{else}}
+                    <a class="navPages-action" href="{{url}}">{{name}}</a>
+                {{/if}}
+
+            </li> 
+        {{/each}}
+    </ul>
+</div>

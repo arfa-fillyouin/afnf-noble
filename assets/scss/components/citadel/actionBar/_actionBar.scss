@@ -1,0 +1,67 @@
+// =============================================================================
+// ACTION BAR (CSS)
+// =============================================================================
+
+
+.actionBar-section {
+    .form-field {
+        background-color: $input-bg-color;
+        border: $actionBar-form-field-border;
+        border-radius: $actionBar-form-field-radius;
+        margin-bottom: 0;
+
+        &:hover {
+            border-color: stencilColor("input-border-color-active");
+        }
+    }
+
+    .form-label {
+        color: $actionBar-form-label-color;
+        font-size: $actionBar-form-label-fontSize;
+        line-height: $actionBar-form-label-lineHeight;
+        margin-bottom: 0;
+        padding-left: $actionBar-form-label-padding;
+    }
+
+    .form-input,
+    .form-select {
+        border: 0;
+        padding-left: $actionBar-form-input-padding;
+        width: auto;
+    }
+
+    .form-label,
+    .form-input,
+    .form-select {
+        display: inline-block;
+    }
+
+    .form-label {
+        display: none;
+    }
+
+    .form-select {
+        color: stencilColor("color-textLink");
+        height: auto;
+        padding: ($actionBar-form-input-padding * 5) ($actionBar-form-input-padding * 2) ($actionBar-form-input-padding * 5) ($actionBar-form-input-padding * 4);
+        font-size: 12px;
+        letter-spacing: 0.25px;
+        background-position: right 7px top 15.5px;
+        background-size: 12.5px;
+        min-width: 200px;
+
+        @include breakpoint("small") {
+            min-width: 200px;
+        }
+
+        @include breakpoint("medium") {
+            min-width: 200px;
+            font-size: 14px;
+        }
+
+        @include breakpoint("large") {
+            min-width: 250px;
+            font-size: 16px;
+        }
+    }
+}

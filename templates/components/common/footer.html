@@ -1,0 +1,153 @@
+{{{region name="footer_top"}}}
+
+<!-- Global Bottom Banner Start -->
+{{#unless theme_settings.hide_bottom_banner}}
+<div class="global-banner bottom">
+    <p class="global-banner-text">{{theme_settings.bottom-banner-content}}</p>
+</div>
+{{/unless}}
+<!-- Global Bottom Banner End -->
+
+<!-- Marketing Bottom Banner Start -->
+{{#if banners.bottom}}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div> 
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
+<!-- Marketing Bottom Banner End -->
+
+<footer class="footer" role="contentinfo">
+    <h2 class="footer-title-sr-only">{{lang 'footer.title'}}</h2>
+    <div class="container">
+        <section class="footer-info">
+            <article class="footer-info-col" data-section-type="newsletterSubscription">
+                {{#if settings.show_newsletter_box}}
+                    {{> components/common/subscription-form}}
+                {{/if}}
+
+                {{#unless theme_settings.social_icon_placement_top}}
+                    {{> components/common/social-links}}
+                {{/unless}}
+            </article>
+
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+                <h3 class="footer-info-heading">
+                    <span class="footer-info-title">{{lang 'footer.navigate'}}</span>
+                    <span class="footer-info-icon">
+                        <svg class="add-icon"><use xlink:href="#icon-add" /></svg>
+                        <svg class="remove-icon"><use xlink:href="#icon-remove" /></svg>
+                    </span>
+                </h3>
+                <ul class="footer-info-list">
+                    {{#each (limit pages 10)}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                    {{/each}}
+                    <li>
+                        <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
+                <h3 class="footer-info-heading">
+                    <span class="footer-info-title">{{lang 'footer.categories'}}</span>
+                    <span class="footer-info-icon">
+                        <svg class="add-icon"><use xlink:href="#icon-add" /></svg>
+                        <svg class="remove-icon"><use xlink:href="#icon-remove" /></svg>
+                    </span>
+                </h3>
+                <ul class="footer-info-list">
+                    {{#each (limit categories 10)}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                    {{/each}}
+                    <!-- <li class="view-all"><a href="#">{{lang 'common.view_all'}}</a></li> -->
+                </ul>
+            </article>
+
+            {{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
+                <h3 class="footer-info-heading">
+                    <span class="footer-info-title">{{lang 'footer.brands'}}</span>
+                    <span class="footer-info-icon">
+                        <svg class="add-icon"><use xlink:href="#icon-add" /></svg>
+                        <svg class="remove-icon"><use xlink:href="#icon-remove" /></svg>
+                    </span>
+                </h3>
+                <ul class="footer-info-list">
+                    {{#each (limit shop_by_brand 9)}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                    {{/each}}
+                    <li class="view-all"><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
+                </ul>
+            </article>
+            {{/and}}
+
+            {{#if settings.address}}
+                <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
+                    <h3 class="footer-info-heading">
+                        <span class="footer-info-title">{{lang 'footer.info'}}</span>
+                        <span class="footer-info-icon">
+                            <svg class="add-icon"><use xlink:href="#icon-add" /></svg>
+                            <svg class="remove-icon"><use xlink:href="#icon-remove" /></svg>
+                        </span>
+                    </h3>
+                    <ul class="footer-info-list">
+                        <li><address>{{nl2br settings.address}}</address></li>
+                        {{#if settings.phone_number}}
+                            <li><strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong></li>
+                        {{/if}}
+                    </ul>
+                </article>
+            {{/if}}
+        </section>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-wrapper {{#or (if theme_settings.show_copyright_footer) (if theme_settings.show_powered_by)}}{{else}}only-one-section{{/or}}">
+                <div class="footer-bottom-left">
+                    {{#if settings.paypal_commerce_credit_message}}
+                        <div class="footer-copyright">
+                            <p class="paypal-credit">{{nl2br settings.paypal_commerce_credit_message}}</p>
+                        </div>
+                    {{/if}}
+                    {{#if theme_settings.show_copyright_footer}}
+                        <div class="footer-copyright">
+                            <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} | <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a> </p>
+                        </div>
+                    {{/if}}
+                    {{#if theme_settings.show_powered_by}}
+                        <div class="footer-copyright">
+                            <p class="powered-by">Theme by <a href="https://lonestartemplates.com/" target="_blank">LONE STAR TEMPLATES</a> | {{lang 'footer.powered_by'}} <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a></p>
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="footer-bottom-right">
+                    {{> components/common/payment-icons}}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {{{region name="ssl_site_seal--global"}}}
+</footer>

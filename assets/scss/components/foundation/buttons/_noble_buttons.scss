@@ -1,0 +1,34 @@
+.button{
+	font-family: stencilFontFamily("button-font"), Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: stencilFontWeight("button-font");
+	border-radius: 0;
+	text-transform: uppercase;
+	background-color: stencilColor("button--default-backgroundColor");
+  	color: stencilColor("button--default-color");
+  	border: 1px solid stencilColor("button--default-borderColor");
+  	position: relative;
+  	z-index: 1;
+  	padding: 15px 42px;
+  	line-height: 1;
+  	&:hover, &:focus {
+  		background-color: stencilColor("button--default-backgroundColorHover");
+  		color: stencilColor("button--default-colorHover");
+		border-color: stencilColor("btn-default-bordercolorhover");
+  	}
+	&.button--primary {
+	  	background-color: stencilColor("button--primary-backgroundColor");
+	  	color: stencilColor("button--primary-color");
+	  	border: 1px solid stencilColor("button--primary-borderColor");
+
+	  	&:hover, &:focus {
+	  		background-color: stencilColor("button--primary-backgroundColorHover");
+		  	color: stencilColor("button--primary-colorHover");
+		  	border-color: stencilColor("button--primary-borderColorHover");
+	  	}
+
+	  	&:active {
+	  		color: stencilColor("button--primary-color");
+	  	}
+	}
+}

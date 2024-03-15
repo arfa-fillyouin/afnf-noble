@@ -1,0 +1,147 @@
+// =============================================================================
+// PREVIEW CART (CSS)
+// =============================================================================
+//
+// 1. Override server-generated inline-css
+//
+// -----------------------------------------------------------------------------
+
+.previewCart {
+    @include grid-row;
+
+    .productView-image {
+        @include grid-column(12);
+        display: flex;
+        align-items: flex-start;
+        align-self: flex-start;
+    }
+
+    @include breakpoint("medium") {
+        .productView {
+            @include grid-column(7.5);
+            display: flex;
+            margin: 0;
+            padding-bottom: 0;
+            padding-top: 0;
+            flex-direction: row;
+        }
+
+        .productView-image {
+            @include grid-column(6);
+            display: flex;
+            align-items: flex-start;
+            align-self: flex-start;
+        }
+
+        .productView-image--cart {
+            align-self: flex-start;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .productView-details {
+            @include grid-column(6);
+            padding-left: 21px;
+        }
+    }
+
+    @include breakpoint("large") {
+        .productView {
+            @include grid-column(8);
+        }
+    }
+
+    .productView {
+        @media screen and (max-width: $screen-medium) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    .productView-title {
+        margin-top: 0;
+    }
+
+    .productView-info {
+        margin-bottom: 10px;
+
+        .productView-info-name {
+            margin-bottom: 3px;
+        }
+    }
+}
+
+.previewCartCheckout {
+    background: container("fill", "dark");
+    padding: spacing("single")/2;
+    text-align: center;
+    margin-bottom: 20px;
+
+    @include breakpoint("medium") {
+        @include grid-column(4.5, $float:right);
+        padding: spacing("single")/2;
+        margin-bottom: 0;
+    }
+
+    @include breakpoint("large") {
+        @include grid-column(4, $float:right);
+    }
+
+    .button {
+        display: block;
+        margin: 0;
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        + p {
+            margin-top: spacing("half");
+        }
+
+        &:not(:last-child) {
+            margin-bottom: spacing("half");
+        }
+        
+    }
+}
+
+.previewCartCheckout-price {
+    display: block;
+    font-size: fontSize("largest");
+    font-weight: bold;
+    text-align: center;
+}
+
+.previewCartCheckout-subtotal {
+    display: block;
+    margin-bottom: spacing("single");
+    margin-top: spacing("single");
+}
+
+.previewCartCheckout-additionalCheckoutButtons {
+    p {
+        float: none !important; // 1
+        margin: spacing("third") 0;
+    }
+
+    .CheckoutButton {
+        margin-bottom: spacing("base");
+
+        &:first-child {
+            margin-top: spacing("single");
+        }
+
+        &:last-child {
+            margin-bottom: spacing("single");
+        }
+    }
+}
+
+.suggestiveCart {
+    display: none;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+}

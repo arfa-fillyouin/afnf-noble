@@ -1,0 +1,35 @@
+// =============================================================================
+// BUTTONS (CSS)
+// =============================================================================
+
+.button {
+    line-height: 1rem;
+    transition: all 0.5s ease;
+    border-radius: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: stencilFontWeight("button-font");
+    font-family: stencilFontFamily("button-font"), Arial, Helvetica, sans-serif;
+
+    + .button {
+        margin-left: 0;
+
+        @include breakpoint("medium") {
+            margin-left: 10.5px;
+        }
+    }
+
+    &:active {
+        color: $buttonStyle-primary-colorActive;
+    }
+}
+
+.button[disabled] {
+    cursor: not-allowed;
+}
+
+.button--icon {
+    svg {
+        fill: stencilColor("button--icon-svg-color");
+    }
+}

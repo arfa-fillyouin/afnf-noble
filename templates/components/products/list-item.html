@@ -1,0 +1,177 @@
+{{#if settings.data_tag_enabled}}
+    <article class="listItem" data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="
+    {{#or customer (unless theme_settings.restrict_to_login)}}
+        {{#if price.with_tax}}
+            {{price.with_tax.value}}
+        {{else}}
+            {{price.without_tax.value}}
+        {{/if}}
+    {{else}}
+        {{lang 'common.login_for_pricing'}}
+    {{/or}}">
+{{else}}
+    <article class="listItem">
+{{/if}}
+    <figure class="listItem-figure {{#each (limit images 2)}}{{#if @index '>' 0}}listItem-figure--with-hover-image{{/if}}{{/each}} {{#if theme_settings.product_hover_image '===' 'active'}}hover-img-listItem-figure{{else}}default-img-listItem-figure{{/if}}">
+        <a href="{{url}}"
+           class="listItem-figure__link"
+           aria-label="{{> components/products/product-info}}"
+           {{#if settings.data_tag_enabled}}
+           data-event-type="product-click"
+           {{/if}}
+        >
+            {{#if stock_level '===' 0}}
+                {{#if theme_settings.pdp_sold_out_label '===' ''}}
+                    {{> components/products/product-badge
+                        badge-type='sold-out'
+                        badge_view=theme_settings.product_sold_out_badges
+                        badge_label=(lang "page_builder.pdp_sold_out_label")
+                    }}
+                {{else}}
+                    {{> components/products/product-badge
+                        badge-type='sold-out'
+                        badge_view=theme_settings.product_sold_out_badges
+                        badge_label=theme_settings.pdp_sold_out_label
+                    }}
+                {{/if}}
+            {{else}}
+                {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
+                    {{#if theme_settings.pdp_sale_badge_label '===' ''}}
+                        {{> components/products/product-badge
+                            badge-type='sale'
+                            badge_view=theme_settings.product_sale_badges
+                            badge_label=(lang "page_builder.pdp_sale_badge_label")
+                        }}
+                    {{else}}
+                        {{> components/products/product-badge
+                            badge-type='sale'
+                            badge_view=theme_settings.product_sale_badges
+                            badge_label=theme_settings.pdp_sale_badge_label
+                        }}
+                    {{/if}}
+                {{/or}}
+            {{/if}}
+            {{> components/common/responsive-img
+                image=image
+                class="listItem-image"
+                fallback_size=theme_settings.productgallery_size
+                lazyload=theme_settings.lazyload_mode
+                default_image=theme_settings.default_image_product
+            }}
+            {{#if theme_settings.product_hover_image '===' 'active'}}
+              {{#each (limit images 2)}}
+                {{#if @index '>' 0}}
+                  <img class='listItem-image hover-image' src="{{getImage this 'productgallery_size' (cdn theme_settings.default_image_product)}}" data-src="{{getImage this 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                {{/if}}
+              {{/each}}
+            {{/if}}
+        </a>
+        <div class="listItem-buttons">
+            <div class="listItem-figureBody">
+                <a class="button button--icon listItem-button wishList" href="javascript:void(0)" data-wishlist data-tooltip="Wish List" rel="no-follow" data-href="{{add_to_wishlist_url}}">
+                    <i class="icon">
+                        <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-heart"></use></svg>
+                    </i>
+                </a>
+            </div>
+            {{#if show_compare}}
+                <div class="listItem-figureBody">
+                    <label class="button button--small listItem-button" for="compare-{{id}}" data-tooltip="Compare">
+                        <input type="checkbox" name="products[]" value="{{id}}" data-compare-id="{{id}}">
+                        <i class="icon not-compared">
+                            <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-compare"></use></svg>
+                            <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tick"></use></svg>
+                        </i>
+                    </label>
+                </div>
+            {{/if}}
+            {{#unless hide_product_quick_view}}
+                {{#if theme_settings.show_product_quick_view}}
+                    <div class="listItem-figureBody">
+                        <button type="button" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--small listItem-button quickview" data-product-id="{{id}}" data-tooltip="Quick view">
+                            <i class="icon">
+                                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-search"></use></svg> 
+                            </i>
+                        </button>
+                    </div>
+                {{/if}}
+            {{/unless}}
+        </div>
+    </figure>
+    <div class="listItem-body">
+        <div class="listItem-content">
+            <div class="listItem-details">
+
+                {{#if brand.name}}
+                    <p class="listItem-brand">{{brand.name}}</p>
+                {{/if}}
+
+                <h4 class="listItem-title">
+                    <a href="{{url}}"
+                    aria-label="{{> components/products/product-info}}"
+                    {{#if settings.data_tag_enabled}}
+                    data-event-type="product-click"
+                    {{/if}}
+                    >
+                        {{name}}
+                    </a>
+                </h4>
+
+                <div class="listItem-actions">
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                        {{#if price}}
+                            <div class="listItem-price">{{> components/products/price price=price}}</div>
+                        {{/if}}
+                    {{else}}
+                        {{> components/common/login-for-pricing}}
+                    {{/or}}
+                </div>
+
+                {{#if show_rating}}
+                    <p class="listItem-rating">
+                        {{> components/products/ratings rating_target=name rating=rating}}{{#if num_reviews '>' 0}}
+                            <span class="card-review">({{num_reviews}})</span>
+                        {{else}}
+                            <span class="card-review">(0)</span>
+                        {{/if}}
+                    </p>
+                {{/if}}
+
+                {{!-- <p class="card-stock" card-stock-level></p> --}}
+                <p class="card-stock stock_level_{{id}}" card-stock-level></p>
+
+                {{#if theme_settings.show_product_swatches}}    
+                    {{!-- <div class="card-swatch" data-id="{{id}}" data-colorswatches></div> --}}
+                    <div class="card-swatches swatch_{{id}}" data-product-id="{{id}}" data-colorswatches></div>
+                {{/if}}
+
+                {{#if summary}}
+                    <p class="listItem-description">{{{summary}}}</p>
+                {{/if}}
+
+            </div>
+            <div class="listItem-actions">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{#if show_cart_action}}
+                        {{#if has_options}}                            
+                            <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                        {{/if}}
+                        {{#if pre_order}}
+                            <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--primary">{{lang 'products.pre_order'}}</a>
+                        {{/if}}
+                        {{#if add_to_cart_url }}
+                            <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary">{{lang 'products.add_to_cart'}}</a>
+                        {{/if}}
+                        {{#if out_of_stock_message }}
+                            <a href="{{url}}" data-event-type="product-click" class="button button--primary" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                        {{/if}}
+                    {{/if}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
+        </div>
+
+        
+    </div>
+</article>

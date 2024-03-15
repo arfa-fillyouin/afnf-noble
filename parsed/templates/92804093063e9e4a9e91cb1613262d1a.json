@@ -1,0 +1,3 @@
+{
+  "components/custom/stock-level-on-category": "{{#if product.stock_level}}\n    <span>Only {{product.stock_level}} left in stock!</span>            \n{{/if}}\n"
+}

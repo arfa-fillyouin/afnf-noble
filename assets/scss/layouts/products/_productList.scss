@@ -1,0 +1,413 @@
+// =============================================================================
+// PRODUCT LIST (CSS)
+// =============================================================================
+
+
+// Product list
+// -----------------------------------------------------------------------------
+
+.productList {
+    @include u-listBullets("none");
+
+    .product {
+        + .product {
+            margin-top: spacing("base") * 4;
+        }
+    }
+}
+
+
+// Product list item
+// -----------------------------------------------------------------------------
+
+.listItem {
+    flex-direction: column;
+    align-items: center;
+    -webkit-align-items: center;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+
+    @include breakpoint("small") {
+        @include grid-row($behavior: "nest");
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: -ms-flex;
+        display: flex;
+        align-items: flex-start;
+        -webkit-align-items: flex-start;
+        flex-direction: row;
+        width: 100%;
+        margin: 0;
+    }
+
+    &:focus-within {
+        .listItem-figureBody {
+            @include breakpoint("large") {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.focus-within {
+        .listItem-figureBody {
+            @include breakpoint("large") {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.listItem-figure,
+.listItem-body {
+    vertical-align: top;
+
+    @include breakpoint("small") {
+        vertical-align: top;
+    }
+
+}
+
+// QuickView button
+// -----------------------------------------------------------------------------
+
+.listItem-button {
+    background-color: $card-figcaption-button-background;
+    border-color: $card-figcaption-button-borderColor;
+    color: $card-figcaption-button-color;
+
+    &:hover,
+    &:focus {
+        background-color: $card-figcaption-button-backgroundHover;
+        border-color: $card-figcaption-button-borderColor;
+        color: $card-figcaption-button-color;
+    }
+}
+
+
+// List figure
+// -----------------------------------------------------------------------------
+
+.listItem-figure {
+    margin: 0 0 spacing("single");
+    position: relative;
+    width: grid-calc(12, $total-columns);
+    margin-top: $card-figure-marginTop;
+    padding: 0;
+    background-color: stencilColor("card-background-color");
+    display: block;
+
+    @include breakpoint("small") {
+        margin-bottom: 0;
+        width: grid-calc(6, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        width: grid-calc(5, $total-columns);
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(3, $total-columns);
+    }
+
+    @media screen and (max-width: $screen-small) {
+        max-width: get-width(stencilString("productgallery_size"));
+        max-height: get-height(stencilString("productgallery_size"));
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__link {
+        display: block;
+        margin: 0;
+        position: relative;
+        text-align: center;
+        max-width: 100%;
+        @include lazy-loaded-padding("productgallery_size");
+    }
+
+    .listItem-button {
+        margin: spacing("single") 0;
+
+        @include breakpoint("large") {
+            display: inline-block;
+            margin: 0;
+            pointer-events: all;
+        }
+    }
+}
+
+.listItem-figureBody {
+    opacity: 1;
+    text-align: center;
+
+    @include breakpoint("large") {
+        opacity: 0;
+        transition: all 0.5s ease;
+
+        .listItem:hover & {
+            opacity: 1;
+        }
+    }
+}
+
+.listItem-image {
+    @include lazy-loaded-img;
+    width: 100%;
+    border: 0;
+    /* Object-fit polyfill */
+    font-family: "object-fit: contain;";
+    max-height: 100%;
+    object-fit: contain;
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+}
+
+.listItem-body {
+    text-align: center;
+
+    @include breakpoint("small") {
+        padding-left: spacing("base") + spacing("sixth");
+        padding-right: spacing("half");
+        width: grid-calc(6, $total-columns);
+        text-align: left;
+    }
+
+    @include breakpoint("medium") {
+        width: grid-calc(7, $total-columns);
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(9, $total-columns);
+    }
+}
+
+
+// List content
+// -----------------------------------------------------------------------------
+
+.listItem-content {
+    margin-bottom: spacing("base");
+}
+
+.listItem-details,
+.listItem-actions {
+
+    @include breakpoint("large") {
+        vertical-align: top;
+    }
+}
+
+
+// List details
+// -----------------------------------------------------------------------------
+
+.listItem-details {
+
+    @include breakpoint("large") {
+        padding-right: spacing("double") * 2;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    /*.card-swatch {
+        .get-swatches {
+            justify-content: flex-start;
+
+            @media screen and (max-width: $screen-small) {
+                justify-content: center;
+            }
+
+            .form-field {
+                .form-option {
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }*/
+
+    .card-swatches {
+        justify-content: flex-start;
+
+        @media screen and (max-width: $screen-small) {
+            justify-content: center;
+        }
+
+        .form-option {
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+.listItem-rating {
+    margin-bottom: (spacing("half") + spacing("quarter"));
+}
+
+.listItem-brand {
+    color: color("greys", "light");
+    font-size: fontSize("base");
+    margin: 0 0 (spacing("quarter") + spacing("eighth"));
+
+    @include breakpoint("medium") {
+        font-size: fontSize("smaller");
+    }
+}
+
+.listItem-title {
+    font-size: $card-title-fontSize;
+    margin: $card-title-margin;
+    font-family: stencilFontFamily("card-title-font"), Arial, Helevetica, sans-serif;
+    font-weight: stencilFontWeight("card-title-font");
+
+    @include breakpoint("medium") {
+        font-size: fontSize("small");
+    }
+
+    > a {
+        text-decoration: none;
+        color: $card-title-color;
+        display: block;
+        text-transform: capitalize;
+
+        &:hover {
+            color: $card-title-color-hover;
+        }
+    }
+}
+
+.listItem-price {
+    margin-bottom: spacing("half");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include breakpoint("medium") {
+        font-size: fontSize("small");
+    }
+
+    .price-section {
+        color: stencilColor("color-textBase");
+        font-size: 18px;
+        font-weight: $fontWeight-bold;
+        margin-right: 5px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        .price-label {
+            font-size: 13px;
+            font-weight: $fontWeight-normal;
+            text-transform: uppercase;
+            color: stencilColor("color-textSecondary");
+        }
+
+        .price-now-label {
+            font-size: 13px;
+            font-weight: $fontWeight-normal;
+            text-transform: uppercase;
+            color: stencilColor("color-textSecondary");
+        }
+
+        .price--non-sale, .price--rrp, .price--non-sale, .price--discounted {
+            color: stencilColor("color-textSecondary");
+            font-size: 18px;
+            font-weight: $fontWeight-normal;
+        }
+
+    }
+}
+
+
+// List actions
+// -----------------------------------------------------------------------------
+//
+// 1. Magic number width to align closer to the intended design.
+//
+// -----------------------------------------------------------------------------
+
+.listItem-actions {
+
+    @include breakpoint("large") {
+        vertical-align: middle;
+
+        .button--compare {
+            @include buttonSize("small");
+        }
+    }
+
+    .button {
+        margin-bottom: 0;
+        border: $card-figcaption-button-border;
+        display: $card-figcaption-button-display;
+        padding: 17px 39px;
+        font-size: fontSize("base");
+        font-weight: $fontWeight-bold;
+
+        color: stencilColor("card-figcaption-button-hover-color");
+        background-color: stencilColor("card-figcaption-button-hover-background");
+        position: relative;
+        width: auto;
+        height: auto;
+
+        &:active, &:focus, &:hover{
+            color: stencilColor("card-figcaption-button-hover-color");
+            background-color: stencilColor("card-figcaption-button-hover-background");
+        }
+
+        @include breakpoint("medium"){
+            color: stencilColor("card-figcaption-button-color");
+            background-color: stencilColor("card-figcaption-button-background");
+            -webkit-box-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0.15);
+            box-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0.15);
+
+            &:active {
+                background-color: $card-figcaption-button-backgroundHover;
+                border: $card-figcaption-button-border;
+            }
+
+            &:hover, &:focus {
+                color: stencilColor("card-figcaption-button-hover-color");
+                background-color: stencilColor("card-figcaption-button-hover-background");
+            }
+
+        }
+
+        @include breakpoint("large") {
+            width: 100%;
+
+            + .button {
+                margin: spacing("half") 0 0;
+            }
+        }
+    }
+}
+
+
+// Product list when sidebar is present
+// -----------------------------------------------------------------------------
+
+.page-sidebar + .page-content {
+    .productList {
+        .listItem-details {
+
+            @include breakpoint("large") {
+                padding-right: spacing("double");
+            }
+        }
+
+        .listItem-actions {
+            display: inline-block;
+        }
+    }
+}

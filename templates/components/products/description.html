@@ -1,0 +1,65 @@
+{{#if product.description}}
+    <div class="productDetailsView-section product-description">
+        <p class="productView-title toggle-active">{{lang 'products.description'}}
+            <svg class="plus-icon icon"><use xlink:href="#icon-plus" /></svg>
+            <svg class="minus-icon icon"><use xlink:href="#icon-minus" /></svg>
+        </p>
+        <div class="productView-description" {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
+            {{{product.description}}}
+        </div>
+    </div>
+{{/if}}
+
+{{#if product.warranty}}
+    <div class="productDetailsView-section product-warranty">
+        <p class="productView-title">{{lang 'products.warranty'}}
+            <svg class="plus-icon icon"><use xlink:href="#icon-plus" /></svg>
+            <svg class="minus-icon icon"><use xlink:href="#icon-minus" /></svg>
+        </p>
+        <div class="productView-description">
+            {{{product.warranty}}}
+        </div>
+    </div>
+{{/if}}
+
+{{#if product.videos.list.length}}
+    <div class="productDetailsView-section product-videos">
+        <p class="productView-title">{{lang 'products.videos.title'}}
+            <svg class="plus-icon icon"><use xlink:href="#icon-plus" /></svg>
+            <svg class="minus-icon icon"><use xlink:href="#icon-minus" /></svg>
+        </p>
+        <div class="productView-description">
+            {{> components/products/videos product.videos}}
+        </div>
+    </div>
+{{/if}}
+
+{{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
+    <div class="productDetailsView-section {{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
+        <p class="productView-title">{{sanitize theme_settings.pdp-custom-fields-tab-label}}
+            <svg class="plus-icon icon"><use xlink:href="#icon-plus" /></svg>
+            <svg class="minus-icon icon"><use xlink:href="#icon-minus" /></svg>
+        </p>
+        <div class="productView-description">
+            <dl class="productView-info">
+                {{#each product.custom_fields}}
+                   <dt class="productView-info-name">{{name}}:</dt>
+                   <dd class="productView-info-value">{{{value}}}</dd>
+                {{/each}}
+            </dl>
+        </div>
+    </div>
+{{/all}}
+
+{{#all settings.show_product_reviews theme_settings.show_product_reviews}}
+    <div class="productDetailsView-section product-reviews productView-reviewTabLink" id="product-reviews">
+        <p class="productView-title">{{lang 'products.reviews.title'}}
+            <svg class="plus-icon icon"><use xlink:href="#icon-plus" /></svg>
+            <svg class="minus-icon icon"><use xlink:href="#icon-minus" /></svg>
+        </p>
+        <div class="productView-description">
+
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        </div>
+    </div>
+{{/all}}

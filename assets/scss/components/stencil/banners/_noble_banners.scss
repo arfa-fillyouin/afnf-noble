@@ -1,0 +1,28 @@
+/* Global Top Banner Style Start */
+.global-top-banner {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	background-color: stencilColor("top-banner-backgroundColor");
+	padding: rem-calc(12px) 0;
+	z-index: 100;
+	@include breakpoint("medium") {
+		position: inherit;
+		padding: rem-calc(16px) 0;
+	}
+	.global-top-banner-text {
+		font-family: stencilFontFamily("banner-font");
+		font-size: rem-calc(12px);
+		letter-spacing: 0.25px;
+		line-height: 1;
+		font-weight: stencilFontWeight("banner-font");
+		text-align: center;
+		text-transform: uppercase;
+		color: stencilColor("top-banner-textColor");
+		margin: 0;
+		@include breakpoint("medium"){
+			font-size: rem-calc(14px);
+		}
+	}
+}
+/* Global Top Banner Style End */

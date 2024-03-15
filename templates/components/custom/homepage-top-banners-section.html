@@ -1,0 +1,29 @@
+{{#if theme_settings.show_homepage_top_banners}}
+    <div class="homepage-top-banners">
+        <div class="top-banners-wrapper">
+            <div class="{{#if theme_settings.homepage_top_banners_layout '===' 'full-width'}}top-banner-full-width{{else if theme_settings.homepage_top_banners_layout '===' 'boxed-width'}}top-banner-fixed-width{{/if}}">
+                <div>
+                    <img class="img left-img" src="{{theme_settings.homepage_top_banners_leftImage}}" alt="" />
+                    <div class="top-banner-content">
+                        <div class="{{#if theme_settings.homepage_top_banners_layout '===' 'full-width'}}content-wrapper-full{{else if theme_settings.homepage_top_banners_layout '===' 'boxed-width'}}content-wrapper{{/if}}">
+                            <h4 class="title">{{theme_settings.homepage_top_leftBanner_headline}}</h4>
+                            <p class="description">{{theme_settings.homepage_top_leftBanner_text}}</p>
+                            <a class="link" href="{{theme_settings.homepage_top_leftBanner_linkUrl}}">{{theme_settings.homepage_top_leftBanner_linkText}}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <img class="img right-img" src="{{theme_settings.homepage_top_banners_rightImage}}" alt="" />
+                    <div class="top-banner-content">
+                        <div class="{{#if theme_settings.homepage_top_banners_layout '===' 'full-width'}}content-wrapper-full{{else if theme_settings.homepage_top_banners_layout '===' 'boxed-width'}}content-wrapper{{/if}}">
+                            <h4 class="title">{{theme_settings.homepage_top_rightBanner_headline}}</h4>
+                            <p class="description">{{theme_settings.homepage_top_rightBanner_text}}</p>
+                            <a class="link" href="{{theme_settings.homepage_top_rightBanner_linkUrl}}">{{theme_settings.homepage_top_rightBanner_linkText}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/if}}

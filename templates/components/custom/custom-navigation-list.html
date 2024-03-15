@@ -1,0 +1,58 @@
+{{#if children}}
+<a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+   href="{{url}}">
+    {{name}}
+</a>
+<span class="menu-icon">
+    <svg class="add-icon"><use xlink:href="#icon-add" /></svg>
+    <svg class="remove-icon"><use xlink:href="#icon-remove" /></svg>
+</span>
+<div class="navPage-subMenu">
+    <div class="navPage-subMenu-inner no-submenu-img">
+        <ul class="navPage-subMenu-list">
+            {{#each children}}
+                <li class="navPage-subMenu-item">
+                    {{#if children}}
+                        <a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                           href="{{url}}"
+                           aria-label="{{name}}"
+                        >
+                            {{name}}
+                        </a>
+                        <span class="menu-icon">
+                            <svg class="add-icon"><use xlink:href="#icon-add" /></svg>
+                            <svg class="remove-icon"><use xlink:href="#icon-remove" /></svg>
+                        </span>
+                        <ul class="navPage-childList" id="navPages-{{id}}">
+                            {{#each children}}
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}"
+                                   href="{{url}}"
+                                   aria-label="{{name}}"
+                                >
+                                    {{name}}
+                                </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    {{else}}
+                        <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}"
+                           href="{{url}}"
+                           aria-label="{{name}}"
+                        >
+                            {{name}}
+                        </a>
+                    {{/if}}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+{{else}}
+<a class="navPages-action{{#if is_active}} activePage{{/if}}"
+   href="{{url}}"
+   aria-label="{{name}}"
+>
+    {{name}}
+</a>
+{{/if}}

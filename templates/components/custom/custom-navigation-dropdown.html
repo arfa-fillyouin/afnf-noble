@@ -1,0 +1,50 @@
+<div class="navPage-subMenu{{#if categories.length '<' 1}} no-categories{{/if}}{{#and (if theme_settings.hide_submenu_img_section) (if categories.length '<' 1)}} no-categories-and-image{{/and}}" aria-hidden="true" tabindex="-1">
+    <div class="navPage-subMenu-inner {{#unless theme_settings.hide_submenu_img_section}}{{else}}no-submenu-img{{/unless}}">
+        <ul class="navPage-subMenu-list">
+            {{#each categories}} 
+                <li class="navPage-subMenu-item">
+                    {{#if children}}
+                        <a class="navPages-action has-subMenu" href="{{url}}">
+                            {{name}}
+                        </a>
+                        <span class="menu-icon">
+                            <svg class="add-icon"><use xlink:href="#icon-add" /></svg>
+                            <svg class="remove-icon"><use xlink:href="#icon-remove" /></svg>
+                        </span>
+                        <ul class="navPage-childList">
+                            {{#each (limit children 5)}}
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action" href="{{url}}" aria-label="{{name}}">{{name}}</a>
+                            </li>
+                            {{/each}}
+                            <li class="navPage-childList-item viewAllLink">
+                                <a class="navPage-childList-action navPages-action" href="{{url}}">{{lang 'common.view_all'}}</a>
+                            </li>
+                        </ul>
+                    {{else}}
+                        <a class="navPages-action has-subMenu" href="{{url}}">{{name}}</a>
+                    {{/if}}
+                </li>
+            {{/each}}
+        </ul>
+        {{#unless theme_settings.hide_submenu_img_section}}
+        <div class="navPage-subMenu-image">
+            <div class="navPage-subMenu-image-content">
+                {{#if theme_settings.submenu-img}}
+                <a href="{{theme_settings.submenu-link}}">
+                    <img src="/product_images/uploaded_images/{{theme_settings.submenu-img}}">
+                </a>
+                {{else}}
+                    <img src="/assets/img/ProductDefault.gif" class="alternate-img">
+                {{/if}}
+                {{#if theme_settings.submenu-label}}
+                    <span class="navPage-subMenu-image-label">{{theme_settings.submenu-label}}</span>
+                {{/if}}
+                {{#if theme_settings.submenu-sub-label}}
+                    <a href="{{theme_settings.submenu-link}}" class="navPage-subMenu-image-sublabel">{{theme_settings.submenu-sub-label}}</a>
+                {{/if}}
+            </div>
+        </div>
+        {{/unless}}
+    </div>
+</div>

@@ -1,0 +1,284 @@
+// =============================================================================
+// CARDS (CSS)
+// =============================================================================
+//
+// 1. Allow users to click the anchor tag on the image in the figcaption empty
+//    space. This provides a much larger and simpler hit state for navigating
+//    to the product details page. (Does not work in IE10 or earlier).
+// 2. Using translate3d to counter a chrome specific bug: When using a masonry
+//    styled layout via CSS column-count etc, transforms applied to descendants
+//    are made invisible, except for 3d transforms...
+//
+// -----------------------------------------------------------------------------
+
+.card {
+    &:focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+
+    &.focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+}
+
+.card-figure {
+    margin-top: $card-figure-marginTop;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    background-color: stencilColor("card-background-color");
+    margin-bottom: 5px;
+
+    &:hover {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+
+    &__link {
+        display: block;
+        position: relative;
+    }
+
+    @media screen and (max-width: $screen-small) {
+        max-width: get-width(stencilString("productgallery_size"));
+        max-height: get-height(stencilString("productgallery_size"));
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.card-img-container {
+    @include lazy-loaded-padding("productgallery_size");
+    max-width: 100%;
+}
+
+.card-figcaption {
+    margin: $card-figcaption-margin;
+    pointer-events: none; // 1
+    opacity: 1;
+    transition: all 0.5s ease;
+
+    @include breakpoint("medium") {
+        display: block;
+        opacity: 0;
+    }
+}
+
+.card-figcaption-body {
+    display: none;
+    pointer-events: all; // 1
+    transform: translate3d(0, -50%, 0); // 2
+    top: calc(100% - 56px);
+
+    @media screen and (max-width: $screen-xsmall) {
+        top: calc(100% - 28px);
+    }
+
+    @include breakpoint("medium") {
+        display: $card-figcaption-body-display;
+    }
+
+    &.d-mobile {
+        display: inline-block;
+        margin-top: 21px;
+
+        .button {
+            padding: 17px 39px;
+            font-size: fontSize("base");
+            font-weight: $fontWeight-bold;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+
+        @include breakpoint("medium") {
+            display: none;
+        }
+    }
+}
+
+.card-image {
+    @include lazy-loaded-img;
+    border: 0;
+    /* Object-fit polyfill */
+    font-family: "object-fit: contain;";
+    max-height: 100%;
+    object-fit: contain;
+    width: 100%;
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+}
+
+.card-title {
+    font-size: 14px;
+    margin: $card-title-margin;
+    font-family: stencilFontFamily("card-title-font"), Arial, Helevetica, sans-serif;
+    font-weight: stencilFontWeight("card-title-font");
+
+    > a {
+        color: $card-title-color;
+        display: block;
+        text-decoration: $card-title-textDecoration;
+        text-transform: capitalize;
+
+        &:hover {
+            color: $card-title-color-hover;
+        }
+    }
+
+    @include breakpoint("medium") {
+        font-size: 16px;
+    }
+
+    @include breakpoint("large") {
+        font-size: $card-title-fontSize;
+    }
+}
+
+.card-text {
+    color: stencilColor("card-text-color");
+    margin-bottom: $card-text-marginBottom;
+
+    abbr {
+        border: 0;
+        color: inherit;
+        font-size: inherit;
+    }
+
+    &[data-test-info-type="price"] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .price-section {
+            color: stencilColor("price-color");
+            font-size: 14px;
+            font-weight: $fontWeight-bold;
+            margin-right: 5px;
+
+            @include breakpoint("medium") {
+                font-size: 16px;
+            }
+
+            @include breakpoint("large") {
+                font-size: 18px;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            .price-label {
+                font-size: 13px;
+                font-weight: $fontWeight-normal;
+                text-transform: uppercase;
+                color: stencilColor("price-label-color");
+            }
+
+            .price-now-label {
+                font-size: 13px;
+                font-weight: $fontWeight-normal;
+                text-transform: uppercase;
+                color: stencilColor("price-label-color");
+            }
+
+            .price--non-sale, .price--rrp, .price--non-sale, .price--discounted {
+                color: stencilColor("price-sale-color");
+                font-size: 12px;
+                font-weight: $fontWeight-normal;
+
+                @include breakpoint("small") {
+                    font-size: 14px;
+                }
+
+                @include breakpoint("medium") {
+                    font-size: 16px;
+                }
+
+                @include breakpoint("large") {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    &[data-test-info-type="brandName"] {
+        font-size: 14px;
+        text-transform: capitalize;
+        margin-bottom: 10px;
+        /*color: #A2A2A2;*/
+        color: stencilColor("card-text-color");
+    }
+
+    &[data-test-info-type="productRating"] {
+        margin-bottom: 15px;
+    }
+}
+
+.card-figcaption-button {
+    display: $card-figcaption-button-display;
+    margin: $card-figcaption-button-margin;
+    padding: 17px 39px;
+    font-size: 14px;
+    font-weight: $fontWeight-bold;
+    -webkit-box-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0.15);
+    box-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0.15);
+    color: stencilColor("card-figcaption-button-color");
+    background-color: stencilColor("card-figcaption-button-background");
+    border: 1px solid stencilColor("card-figcaption-button-background");
+    position: relative;
+    width: auto;
+    height: auto;
+
+    &:active, &:hover {
+        color: stencilColor("card-figcaption-button-hover-color");
+        background-color: stencilColor("card-figcaption-button-background");
+        border-color: stencilColor("card-figcaption-button-background");
+    }
+
+    &:after {
+        background-color: stencilColor("card-figcaption-button-hover-background");
+        border-color: stencilColor("card-figcaption-button-hover-background");
+    }
+
+    .card-figcaption-body & {
+        &:focus, &:hover, &:active {
+            color: stencilColor("card-figcaption-button-hover-color");
+            background-color: stencilColor("card-figcaption-button-hover-background");
+            border-color: stencilColor("card-figcaption-button-hover-background");
+        }
+    }
+
+    + .card-figcaption-button {
+        margin: $card-figcaption-button-margin;
+    }
+}
+
+.card-body {
+    text-align: center;
+    padding-top: 10px;
+}
+
+
+//
+// Alternate card
+//
+// Purpose: Used to give the card alternative styling
+// -----------------------------------------------------------------------------
+
+.card--alternate {
+    transition: all 0.15s ease;
+
+    .card-body {
+        transition: all 0.15s ease;
+    }
+}

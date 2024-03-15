@@ -1,0 +1,83 @@
+{{#unless theme_settings.hide_hp_shop_cat}}
+    <div class="hp-categories-section">
+        <div class="container">
+            <div class="section-wrapper">
+                <h2 class="hp-section-title">{{lang 'common.shop_cat_title'}}</h2>
+                <div class="section-inner">
+                    <div class="section-content{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                        <a href="{{theme_settings.hp_shop_cat_1_link_path}}" class="category-link{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                            <div class="category-link-inner">
+                                {{#if theme_settings.hp_shop_cat_1_img}}
+                                    <div class="section-img">
+                                        <img src="/product_images/uploaded_images/{{theme_settings.hp_shop_cat_1_img}}">
+                                    </div>
+                                {{else}}
+                                    <div class="section-img">
+                                        <img src="{{cdn '/assets/img/missing-img.png'}}" alt="When there is no image uploaded">
+                                    </div>
+                                {{/if}}
+                                {{#if theme_settings.hp_shop_cat_1_title}}
+                                    <span class="section-link">{{theme_settings.hp_shop_cat_1_title}}</span>
+                                {{/if}}
+                            </div>
+                        </a>
+                    </div>
+                    <div class="section-content{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                        <a href="{{theme_settings.hp_shop_cat_2_link_path}}" class="category-link{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                            <div class="category-link-inner">
+                                {{#if theme_settings.hp_shop_cat_2_img}}
+                                    <div class="section-img">
+                                        <img src="/product_images/uploaded_images/{{theme_settings.hp_shop_cat_2_img}}">
+                                    </div>
+                                {{else}}
+                                    <div class="section-img">
+                                        <img src="{{cdn '/assets/img/missing-img.png'}}" alt="When there is no image uploaded">
+                                    </div>
+                                {{/if}}
+                                {{#if theme_settings.hp_shop_cat_2_title}}
+                                    <span class="section-link">{{theme_settings.hp_shop_cat_2_title}}</span>
+                                {{/if}}
+                            </div>
+                        </a>
+                    </div>
+                    <div class="section-content{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                        <a href="{{theme_settings.hp_shop_cat_3_link_path}}" class="category-link{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                            <div class="category-link-inner">
+                                {{#if theme_settings.hp_shop_cat_3_img}}
+                                    <div class="section-img">
+                                        <img src="/product_images/uploaded_images/{{theme_settings.hp_shop_cat_3_img}}">
+                                    </div>
+                                {{else}}
+                                    <div class="section-img">
+                                        <img src="{{cdn '/assets/img/missing-img.png'}}" alt="When there is no image uploaded">
+                                    </div>
+                                {{/if}}
+                                {{#if theme_settings.hp_shop_cat_3_title}}
+                                    <span class="section-link">{{theme_settings.hp_shop_cat_3_title}}</span>
+                                {{/if}}
+                            </div>
+                        </a>
+                    </div>
+                    <div class="section-content{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                        <a href="{{theme_settings.hp_shop_cat_4_link_path}}" class="category-link{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+                            <div class="category-link-inner">
+                                {{#if theme_settings.hp_shop_cat_4_img}}
+                                    <div class="section-img">
+                                        <img src="/product_images/uploaded_images/{{theme_settings.hp_shop_cat_4_img}}">
+                                    </div>
+                                {{else}}
+                                    <div class="section-img">
+                                        <img src="{{cdn '/assets/img/missing-img.png'}}" alt="When there is no image uploaded">
+                                    </div>
+                                {{/if}}
+                                {{#if theme_settings.hp_shop_cat_4_title}}
+                                    <span class="section-link">{{theme_settings.hp_shop_cat_4_title}}</span>
+                                {{/if}}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/unless}}

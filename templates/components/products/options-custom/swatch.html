@@ -1,0 +1,28 @@
+<div class="form-field" data-custom-attribute="swatch">
+    {{#each (limit this.values 6)}}
+		<label class="form-option form-option-swatch index_{{@index}} {{#if @index '==' 6}}found{{/if}}" data-product-attribute-value="{{id}}" data-product-attribute-name="{{../id}}"> 
+			{{#if image}}
+				<span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{getImage image "swatch_option_size"}}');"></span>
+			{{/if}}
+			{{#if data.[2]}}
+				<span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+				<span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+				<span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[2]}}"></span>
+			{{else}}
+				{{#if data.[1]}} 
+					<span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+					<span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+				{{else}}
+					{{#if data.[0]}}
+						<span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+					{{/if}}
+				{{/if}}
+			{{/if}}
+		</label> 
+    {{/each}}
+	{{#each (limit this.values 7)}}
+        {{#if @index "==" 6}}
+            <a class="lable-more-card" href="{{product.url}}">+more</a>
+        {{/if}}
+    {{/each}}
+</div>

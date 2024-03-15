@@ -1,0 +1,289 @@
+// =============================================================================
+// PRODUCT Sale Badges (CSS)
+// =============================================================================
+
+@mixin setFlagColors($badge-color, $text-color) {
+    background: stencilColor($badge-color);
+    color: stencilColor($text-color);
+}
+// BURST BADGE
+// -----------------------------------------------------------------------------
+
+%base-flag-star {
+    content: "";
+    display: block;
+    height: 30px;
+    left: 0;
+    overflow: visible;
+    position: absolute;
+    top: 0;
+    transform: scaleX(1) scaleY(1) scaleZ(1);
+    transform-origin: 50% 50% 0;
+    transition: background-color 800ms ease;
+    width: 30px;
+    z-index: zIndex("lower");
+    text-transform: uppercase;
+    text-align: center;
+
+    &::before {
+        transform: rotateZ(30deg) scaleX(1) scaleY(1) scaleZ(1);
+    }
+    
+    &::after {
+        transform: rotateZ(60deg) scaleX(1) scaleY(1) scaleZ(1);
+    }
+
+    @include breakpoint("medium") {
+        height: 38px;
+        width: 38px;
+    }
+}
+
+.sale-flag-star,
+.sale-flag-star::before,
+.sale-flag-star::after {
+    @extend %base-flag-star;
+    background: stencilColor("color_badge_product_sale_badges");
+}
+
+.sold-out-flag-star,
+.sold-out-flag-star::before,
+.sold-out-flag-star::after {
+    @extend %base-flag-star;
+    background: stencilColor("color_badge_product_sold_out_badges");
+}
+
+.starwrap {
+    height: 30px;
+    left: 22px;
+    position: absolute;
+    top: 22px;
+    width: 30px;
+
+    @include breakpoint("medium") {
+        height: 35px;
+        width: 38.5px;
+        left: 22px;
+        top: 22px;
+    }
+}
+
+.listItem-figure {
+    .starwrap {
+
+        @include breakpoint("large") {
+            top: 15px;
+        }
+    }
+}
+
+%base-text-burst {
+    font-weight: 600;
+    line-height: 30px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: zIndex("high");
+    text-transform: uppercase;
+    font-size: 10px;
+
+    @include breakpoint("medium") {
+        font-size: 14px;
+        top: 13%;
+    }
+}
+
+.sale-text-burst {
+    @extend %base-text-burst;
+    color: stencilColor("color_text_product_sale_badges");
+}
+
+.sold-out-text-burst {
+    @extend %base-text-burst;
+    color: stencilColor("color_text_product_sold_out_badges");
+    line-height: 1;
+    font-size: 10px;
+    top: 20%;
+
+    @include breakpoint("medium") {
+        font-size: 13px;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// TOP LEFT BADGE
+// -----------------------------------------------------------------------------
+%base-flag-side {
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 3.5px;
+    padding-right: 3.5px;
+    padding-top: spacing("eighth") / 4;
+    padding-bottom: spacing("eighth") / 4;
+    position: absolute;
+    transition: background-color 800ms ease;
+    z-index: zIndex("lower");
+    text-transform: uppercase;
+    text-align: center;
+    left: 15px;
+    top: 15px;
+
+    @include breakpoint("medium") {
+        font-size: 14px;
+        padding-left: 6.5px;
+        padding-right: 6.5px;
+        padding-top: spacing("eighth") / 2;
+        padding-bottom: spacing("eighth") / 2;
+        height: 50px;
+        line-height: 49px;
+        border-radius: 50%;
+    }
+}
+
+.sale-flag-side {
+    @extend %base-flag-side;
+    @include setFlagColors("color_badge_product_sale_badges", "color_text_product_sale_badges");
+}
+
+.sold-out-flag-side {
+    @extend %base-flag-side;
+    @include setFlagColors("color_badge_product_sold_out_badges", "color_text_product_sold_out_badges");
+    border-radius: 0;
+    height: 30px;
+    line-height: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+    @include breakpoint("medium") {
+        border-radius: 0;
+        height: 40px;
+        line-height: 30px;
+    }
+}
+
+.product:hover .sale-flag-side {
+    background: stencilColor("color_hover_product_sale_badges");
+}
+
+.product:hover .sold-out-flag-side {
+    background: stencilColor("color_hover_product_sold_out_badges");
+}
+
+// -----------------------------------------------------------------------------
+// SASH BADGE
+// -----------------------------------------------------------------------------
+%base-flag-sash {
+    font-size: 10px;
+    font-weight: 700;
+    height: 35px;
+    left: -26px;
+    line-height: 35px;
+    padding-top: spacing("eighth") / 2;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    transform: rotate(-45deg);
+    transition: background-color 800ms ease;
+    width: 90px;
+    z-index: zIndex("lower");
+    text-transform: uppercase;
+
+    @include breakpoint("medium") {
+        font-size: 14px;
+        height: 40px;
+        line-height: 40px;
+        left: -35px;
+        top: 10px;
+        width: 133px;
+    }
+}
+
+.sale-flag-sash {
+    @extend %base-flag-sash;
+    @include setFlagColors("color_badge_product_sale_badges", "color_text_product_sale_badges");
+}
+
+.sold-out-flag-sash {
+    @extend %base-flag-sash;
+    @include setFlagColors("color_badge_product_sold_out_badges", "color_text_product_sold_out_badges");
+    left: -28px;
+    top: 7px;
+    width: 100px;
+
+    @include breakpoint("medium") {
+        left: -34px;
+        top: 13.5px;
+        width: 133px;
+    }
+}
+
+.listItem-figure {
+    .sold-out-flag-sash {
+        left: -28px;
+        top: 7px;
+        width: 100px;
+
+        @include breakpoint("medium") {
+            left: -34px;
+            top: 13.5px;
+            width: 133px;
+        }
+    }
+}
+
+.product:hover .sale-flag-sash {
+    background: stencilColor("color_hover_product_sale_badges");
+}
+
+.product:hover .sold-out-flag-sash {
+    background: stencilColor("color_hover_product_sold_out_badges");
+}
+
+.product {
+    overflow: hidden;
+}
+
+.productView-image {
+
+    .productView-img-container {
+        overflow: hidden;
+    }
+
+    .sold-out-flag-side, .sale-flag-side {
+        right: 12px;
+        top: 12px;
+        left: auto;
+    }
+
+    .starwrap {
+        right: 22px;
+        left: auto;
+    }
+
+    .sale-flag-sash {
+        right: -26px;
+        top: 0;
+        left: auto;
+        transform: rotate(45deg);
+
+        @include breakpoint("medium") {
+            right: -35px;
+        }
+    }
+
+    .sold-out-flag-sash {
+        right: -27px;
+        top: 5px;
+        left: auto;
+        transform: rotate(45deg);
+
+        @include breakpoint("medium") {
+            right: -33px;
+            top: 12px;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+// =============================================================================
+// PANELS (CSS)
+// =============================================================================
+
+
+.panel-title {
+    font-size: fontSize("small");
+}
+
+.panel--large {
+    .panel-body {
+        margin-bottom: spacing("single") + spacing("third");
+        padding: spacing("single") + spacing("third");
+        background-color: transparent;
+        border: 1px solid #D7D7D7;
+    }
+}

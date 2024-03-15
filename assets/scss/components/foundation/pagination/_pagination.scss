@@ -1,0 +1,166 @@
+// =============================================================================
+// PAGINATION (CSS)
+// =============================================================================
+
+
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Centred list via inline-block. Font-size: 0; to remove white-space.
+// 2. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+
+.pagination-list {
+    @include clearfix;
+
+    font-size: 0; // 1
+    margin-bottom: 0;
+    // text-align: center;
+    text-align: right;
+
+    .pagination-item { // 2
+        display: inline-block;
+        margin-left: 3.5px;
+
+        @include breakpoint("small") {
+            margin-left: 7px;
+        }
+
+        @include breakpoint("medium") {
+            margin-left: 7px;
+        }
+
+        @include breakpoint("large") {
+            margin-left: 14px;
+        }
+    }
+}
+
+
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+
+.pagination-item {
+    line-height: 1;
+    padding: 0 3px;
+
+    .pagination-link {
+        text-decoration: none;
+        transition: $pagination-link-transition;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        font-family: "Montserrat", sans-serif;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 0.25px;
+        padding: 0;
+        font-weight: $fontWeight-bold;
+        border-bottom: $pagination-item-border;
+
+        &:hover {
+            color: $pagination-link-color-hover;
+        }
+
+        @include breakpoint("medium") {
+            font-size: 16px;
+        }
+
+        @include breakpoint("large") {
+            font-size: 18px;
+        }
+    }
+
+    &.pagination-item--current { // 1
+        margin: $pagination-link-current-margin;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+
+        .pagination-link {
+            border-color: $pagination-link-current-borderColor;
+        }
+    }
+
+    &.pagination-item--previous, // 1
+    &.pagination-item--next { // 1
+
+        > a {
+            /*color: $pagination-item-previousNext-color;*/
+            color: stencilColor("color-textLink");
+
+            &:hover {
+                /*color: $pagination-item-previousNext-color-hover;*/
+                color: stencilColor("color-textLink--hover");
+
+                .icon > svg {
+                    /*fill: $pagination-item-previousNext-color-hover;*/
+                    fill: stencilColor("color-textLink--hover");
+                }
+            }
+        }
+    }
+}
+
+.pagination-item--previous,
+.pagination-item--next {
+    .icon {
+        height: 20px;
+        margin-top: -2px;
+        width: 20px;
+        display: none;
+    }
+}
+
+.pagination-item--previous {
+    float: left;
+
+    .icon {
+        margin-left: -12px;
+    }
+}
+
+.pagination-item--next {
+    float: right;
+
+    .icon {
+        margin-right: -12px;
+    }
+}
+
+
+// Simple/small pagination (Next/Previous arrows are the only way to navigate)
+// -----------------------------------------------------------------------------
+
+.pagination-list--small {
+    position: relative;
+
+    .pagination-item {
+        color: $pagination-list--small-color;
+        cursor: inherit;
+        line-height: $pagination-list--small-lineHeight;
+    }
+
+    .pagination-link {
+        padding: $pagination-list--small-link-padding;
+    }
+
+    .pagination-item--previous,
+    .pagination-item--next {
+        position: absolute;
+        top: 0;
+    }
+
+    .pagination-item--previous {
+        left: 0;
+    }
+
+    .pagination-item--next {
+        right: 0;
+    }
+}

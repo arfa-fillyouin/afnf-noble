@@ -1,0 +1,129 @@
+<div class="hp-products-section">
+    <div class="container">
+
+        {{#if theme_settings.hp_products_layout '===' 'carousel'}}
+            <ul class="tabs" data-tab role="tablist">
+                {{#if products.featured}}
+                    <li class="tab is-active" role="presentation">
+                        <a class="tab-title" href="#tab-featured" role="tab" tabindex="0" aria-selected="true" controls="tab-featured">
+                            {{#if theme_settings.featuredTitle}}
+                                {{theme_settings.featuredTitle}}
+                            {{else}}
+                                {{lang 'common.featuredTitle'}}
+                            {{/if}}
+                        </a>
+                    </li>
+                {{/if}}
+                {{#if products.new}}
+                    <li class="tab{{#unless products.featured}} is-active{{/unless}}" role="presentation">
+                        <a class="tab-title" href="#tab-new" role="tab" tabindex="0" aria-selected="{{#if products.featured}}false{{else}}true{{/if}}" controls="tab-new">
+                            {{#if theme_settings.newTitle}}
+                                {{theme_settings.newTitle}}
+                            {{else}}
+                                {{lang 'common.newTitle'}}
+                            {{/if}}
+                        </a>
+                    </li>
+                {{/if}}
+                {{#if products.top_sellers}}
+                    {{#if theme_settings.topTitle}}
+                        <li class="tab" role="presentation">
+                            <a class="tab-title" href="#tab-bestsellers" role="tab" tabindex="0" aria-selected="true" controls="tab-bestsellers">
+                                {{theme_settings.topTitle}}
+                            </a>
+                        </li>
+                    {{else}}
+                        <li class="tab" role="presentation">
+                            <a class="tab-title" href="#tab-bestsellers" role="tab" tabindex="0" aria-selected="true" controls="tab-bestsellers">
+                                {{lang 'common.topTitle'}}
+                            </a>
+                        </li>
+                    {{/if}}
+                {{/if}}
+            </ul>
+
+            <div class="tabs-contents">
+                {{#if products.featured}}
+                    <div role="tabpanel" aria-hidden="false" class="tab-content has-jsContent is-active{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}" id="tab-featured">
+                        {{{region name="home_above_featured_products"}}}
+                        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+                        {{{region name="home_below_featured_products"}}}
+                    </div>
+                {{/if}}
+
+                {{#if products.new}}
+                    <div role="tabpanel" aria-hidden="{{#if products.featured}}true{{else}}false{{/if}}" class="tab-content has-jsContent{{#unless products.featured}} is-active{{/unless}}{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}" id="tab-new">
+                        {{{region name="home_above_new_products"}}}
+                        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
+                        {{{region name="home_below_new_products"}}}
+                    </div>
+                {{/if}}
+
+                {{#if products.top_sellers}}
+                    <div role="tabpanel" aria-hidden="true" class="tab-content has-jsContent{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}" id="tab-bestsellers">
+                        {{{region name="home_above_top_products"}}}
+                        {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
+                        {{{region name="home_below_top_products"}}}
+                    </div>
+                {{/if}}
+            </div>
+        {{else}}
+            {{#if products.featured}}
+                <div class="hp-featured-products hp-products">
+                    <div class="hp-section-title">
+                        {{#if theme_settings.featuredTitle}}
+                            {{theme_settings.featuredTitle}}
+                        {{else}}
+                            {{lang 'common.featuredTitle'}}
+                        {{/if}}
+                    </div>
+
+                    <div class="hp-products">
+                        {{{region name="home_above_featured_products"}}}
+                        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+                        {{{region name="home_below_featured_products"}}}
+                    </div>
+                </div>
+            {{/if}}
+            
+
+            {{#if products.new}}
+                <div class="hp-featured-products hp-products">
+                    <div class="hp-section-title">
+                        {{#if theme_settings.newTitle}}
+                            {{theme_settings.newTitle}}
+                        {{else}}
+                            {{lang 'common.newTitle'}}
+                        {{/if}}
+                    </div>
+
+                    <div class="hp-products">
+                        {{{region name="home_above_new_products"}}}
+                        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
+                        {{{region name="home_below_new_products"}}}
+                    </div>
+                </div>
+            {{/if}}
+
+
+            {{#if products.top_sellers}}
+                <div class="hp-featured-products hp-products">
+                    <div class="hp-section-title">
+                        {{#if theme_settings.topTitle}}
+                            {{theme_settings.topTitle}}
+                        {{else}}
+                            {{lang 'common.topTitle'}}
+                        {{/if}}
+                    </div>
+
+                    <div class="hp-products">
+                        {{{region name="home_above_top_products"}}}
+                        {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
+                        {{{region name="home_below_top_products"}}}
+                    </div>
+                </div>
+            {{/if}}
+        {{/if}}
+
+    </div>
+</div>

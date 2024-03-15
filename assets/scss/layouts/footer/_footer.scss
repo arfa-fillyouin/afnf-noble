@@ -1,0 +1,463 @@
+// =============================================================================
+// FOOTER (CSS)
+// =============================================================================
+
+
+// Layout and columns
+// -----------------------------------------------------------------------------
+//
+// 1. To enable the grid's display: inline-block; to work properly, we need to
+//    remove the white-space that it creates between columns with font-size: 0;
+// 2. Re-set the font-size that was reduced to 0 in point 1 for children.
+// 3. Fix for text flickers on windows devices
+//
+// -----------------------------------------------------------------------------
+
+.footer {
+    background-color: $footer-background;
+    border-top: 1px solid stencilColor("footer-borderColor");
+    padding: (spacing("double") + spacing("half")) 0 0;
+    position: relative;
+    transform: translateZ(0); // 3
+
+    p {
+        color: stencilColor("color-textSecondary");
+    }
+
+    .socialLinks--alt {
+        .icon {
+            width: 25px;
+            height: 25px;
+
+            > svg {
+                fill: stencilColor("footer-social-icon-color");
+                stroke: none;
+            }
+            &:hover {
+                svg {
+                    fill: stencilColor("footer-social-icon-hover-color");
+                    stroke: none;
+                }
+            }
+        }
+        .socialLinks-item:not(:last-child) {
+            margin: 0 5px 0px 0;
+        }
+    }
+}
+
+.footer-title-sr-only {
+    height: 1px;
+    left: -10000px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    width: 1px;
+}
+
+.footer-info {
+    @include grid-row($behavior: nest);
+    font-size: 0; // 1
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    -ms-flex-pack: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    @include breakpoint("medium") {
+        margin: 0px -15px;
+        flex-direction: row;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    @include breakpoint("large") {
+        margin: 0px -33px;
+    }
+}
+
+.footer-info-col {
+    @include grid-column(12);
+    color: stencilColor("color-textSecondary");
+    display: inline-block;
+    float: none;
+    font-size: fontSize("base"); // 2
+    margin-bottom: spacing("single");
+    overflow-wrap: break-word;
+    text-align: left;
+    vertical-align: top;
+    // TODO: specifically use vendor only for IE11 since overflow-wrap is not supported here
+    -ms-word-break: break-all;
+
+    @include breakpoint("small") {
+        text-align: left;
+        width: width("12/12");
+    }
+
+    @include breakpoint("medium") {
+        width: 32%;
+        padding: 0 15px;
+        margin-bottom: spacing("single");
+    }
+
+    @include breakpoint("large") {
+        padding: 0 33px;
+        width: 30%;
+    }
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+
+    address {
+        font-style: normal;
+        font-size: 12px;
+        line-height: 26px;
+        color: stencilColor("color-textSecondary");
+    }
+
+    &[data-section-type="newsletterSubscription"] {
+        margin-top: 0;
+
+        .form-field {
+            margin: 0;
+        }
+
+        .form {
+            margin-bottom: 18px;
+        }
+
+        .footer-info-heading {
+            &+ p {
+                font-size: 12px;
+                margin-bottom: 28px;
+            }
+        }
+
+        .form-prefixPostfix {
+            @include breakpoint("large") {
+                flex-wrap: nowrap;
+            }
+            .button {
+                font-size: 16px;
+                height: 45px;
+                padding: 15px 15px;
+
+                @include breakpoint("large") {
+                    margin-left: 5px;
+                    max-width: 134px;
+                    min-width: 134px;
+                }
+
+                @media screen and (max-width: 800px) {
+                    width: auto;
+                    margin-top: 0;
+                    margin-left: 5px;
+                }
+
+                @media screen and (max-width: $screen-small) {
+                    width: 100%;
+                    margin-left: 0;
+                    margin-top: 5px;
+                }
+            }
+
+            .form-input {
+                background-color: stencilColor("color-white");
+                height: 45px;
+            }
+
+            .form-input::placeholder {
+                color: stencilColor("placeholder-font-color");
+            }
+
+            .form-input::-webkit-input-placeholder {
+              color: stencilColor("placeholder-font-color");
+            }
+
+            .form-input::-moz-placeholder {
+              color: stencilColor("placeholder-font-color");
+            }
+
+            .form-input:-ms-input-placeholder {
+              color: stencilColor("placeholder-font-color");
+            }
+
+            .form-input:-moz-placeholder {
+              color: stencilColor("placeholder-font-color");
+            }
+        }
+    }
+
+    &[data-section-type="storeInfo"] {
+        .footer-info-heading {
+            @include breakpoint("medium") {
+                display: none;
+            }
+        }
+    }
+}
+
+.footer-info-col--small {
+    @include breakpoint("medium") {
+        width: 17%;
+    }
+
+    @include breakpoint("large") {
+        width: 17.5%;
+    }
+}
+
+.footer-info-col--social {
+    width: 100%;
+}
+
+.footer-info-col--left {
+    @include breakpoint("small") {
+        padding: 0;
+    }
+}
+
+.footer-info-col--right {
+    @include breakpoint("small") {
+        left: 50%;
+        position: inherit;
+        width: 50%;
+    }
+
+    @include breakpoint("medium") {
+        left: 0;
+        padding: 0;
+        text-align: right;
+        width: 100%;
+    }
+}
+
+
+// Content
+// -----------------------------------------------------------------------------
+
+.footer-info-heading {
+    color: $footer-heading-fontColor;
+    font-size: stencilNumber("footer-heading-fontSize");
+    text-transform: uppercase;
+    font-family: stencilFontFamily("footer-heading-font");
+    font-weight: stencilFontWeight("footer-heading-font");
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .footer-info-icon{
+        @include breakpoint("medium"){
+            display: none;
+        }
+        svg{
+            fill: $footer-heading-fontColor;
+            stroke: $footer-heading-fontColor;
+            stroke-width: 6px;
+            width: 16px;
+            height: 16px;
+        }
+        .add-icon{
+            display: block;
+        }
+        .remove-icon{
+            display: none;
+        }
+    }
+
+    &.toggle-active{
+        .footer-info-icon{
+            .add-icon{
+                display: none;
+            }
+            .remove-icon{
+                display: block;
+            }
+        }
+    }
+}
+
+.footer-info-list {
+    list-style: none;
+    margin-left: 0;
+
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
+
+    a {
+        color: stencilColor("footer-color-textLink");
+        text-decoration: none;
+        font-size: fontSize("tiny");
+        letter-spacing: 1px;
+        line-height: 26px;
+
+        &:hover, &:focus {
+            color: stencilColor("footer-color-textLink--hover");
+        }
+
+        &:active {
+            color: stencilColor("footer-color-textLink--active");
+        }
+    }
+
+    .view-all {
+        text-transform: uppercase;
+
+        a {
+            font-weight: $fontWeight-bold;
+        }
+    }
+}
+
+.footer-copyright {
+    text-align: center;
+    text-transform: uppercase;
+
+    @include breakpoint("small") {
+        text-align: center;
+    }
+
+    @include breakpoint("medium") {
+        text-align: left;
+    }
+
+    > .powered-by {
+        color: stencilColor("color-textSecondary");
+        font-size: fontSize("tiny");    
+        margin: 0 0 15px;
+    }
+
+    &:only-child {
+        > .powered-by {
+            margin: 0;
+        }
+    }
+
+    > .paypal-credit {
+        color: stencilColor("color-textSecondary");
+        font-size: fontSize("tiny");
+        margin: 1em 0 2em;
+    }
+
+    a {
+        color: stencilColor("color-textSecondary");
+        text-decoration: none;
+
+        &:hover {
+            color: stencilColor("footer-color-textLink--hover");
+        }
+
+        &:active {
+            color: stencilColor("footer-color-textLink--active");
+        }
+    }
+
+    & + .footer-copyright {
+        p {
+            margin: 0;
+            font-size: 10px;
+        }
+    }
+}
+
+.footer-payment-icons {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    .footer-payment-icon {
+        height: 28px;
+        margin: spacing("quarter");
+        vertical-align: middle;
+        width: 50px;
+    }
+
+    svg {
+        fill: stencilColor("icon-color");
+    }
+}
+
+.footer-newsletter-summary {
+    text-align: left;
+}
+
+.footer-bottom-right {
+    &:empty {
+        display: none;
+    }
+}
+
+.footer-bottom {
+    background-color: stencilColor("footer-bottom-backgroundColor");
+    padding: 18px 0;
+    border-top: 1px solid stencilColor("footer-bottom-borderColor");
+
+    .footer-bottom-wrapper {
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: -ms-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        -moz-justify-content: space-between;
+        -webkit-justify-content: space-between;
+        -ms-justify-content: space-between;
+        justify-content: space-between;
+        flex-direction: column;
+
+        @include breakpoint("medium") {
+            flex-direction: row;
+        }
+
+        &.only-one-section {
+            justify-content: center;
+        }
+
+        .footer-bottom-left {
+            margin-bottom: 10px;
+
+            @include breakpoint("medium") {
+                margin-bottom: 0;
+            }
+
+            &:empty {
+                display: none;
+            }
+        }
+    }
+
+    .payment-icons {
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: -ms-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        -moz-justify-content: flex-end;
+        -webkit-justify-content: flex-end;
+        -ms-justify-content: flex-end;
+        justify-content: flex-end;
+
+        .payment-icon:not(:last-child) {
+            margin-right: 25px;
+        }
+    }
+}

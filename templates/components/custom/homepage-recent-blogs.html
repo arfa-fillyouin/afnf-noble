@@ -1,0 +1,26 @@
+{{#unless theme_settings.hide_hp_blog_section}}
+    {{#if blog.recent_posts}}
+        <div class="hp-recent-blogs{{#unless theme_settings.disable_animation}} animation-enabled{{/unless}}">
+            <div class="container">
+                <div class="blog-content{{#if theme_settings.show_hp_blog_images}} show-blog-img{{/if}}">
+                    <h2 class="hp-section-title">{{lang 'common.blog_title'}}</h2>
+                    <div class="blog-grid">
+                        {{#each blog.recent_posts}}
+                            <div class="blog-post">
+                                <div class="blog-post-wrapper">
+                                    <a class="blog-img" href="{{url}}">
+                                        <img src="{{#if thumbnail}}{{getImage thumbnail 'gallery_size'}}{{else}}{{cdn '/assets/img/missing-img.png'}}{{/if}}" alt="{{#if thumbnail.alt}}{{thumbnail.alt}}{{else}}Blog Image{{/if}}">
+                                    </a>
+                                    <div class="blog-details">
+                                        <p class="blog-date">{{date_published}}</p>
+                                        <h3 class="blog-title"><a href="{{url}}">{{title}}</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+{{/unless}}
